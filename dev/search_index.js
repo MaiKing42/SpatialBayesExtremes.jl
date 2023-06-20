@@ -1,0 +1,3 @@
+var documenterSearchIndex = {"docs":
+[{"location":"","page":"Home","title":"Home","text":"CurrentModule = SpatialBayesExtremes","category":"page"},{"location":"#SpatialBayesExtremes","page":"Home","title":"SpatialBayesExtremes","text":"","category":"section"},{"location":"","page":"Home","title":"Home","text":"Documentation for SpatialBayesExtremes.","category":"page"},{"location":"","page":"Home","title":"Home","text":"","category":"page"},{"location":"","page":"Home","title":"Home","text":"Modules = [SpatialBayesExtremes]","category":"page"}]
+}
