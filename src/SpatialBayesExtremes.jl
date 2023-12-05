@@ -1,4 +1,4 @@
 module SpatialBayesExtremes
 
-using Distributions, DataFrames, StatsModels
+using Distributions, DataFrames, StatsModels, ProgressMeter
 end
