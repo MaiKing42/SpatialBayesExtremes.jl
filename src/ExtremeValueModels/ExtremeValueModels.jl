@@ -11,3 +11,10 @@ abstract type ExtremeValueModel end
 Abstract type for univariate extreme value models.
 """
 abstract type UnivariateExtremeValueModel <: ExtremeValueModel end
+
+"""
+    RegressionExtremeValueModel
+
+Abstract type for regression extreme value models.
+"""
+abstract type RegressionExtremeValueModel <: ExtremeValueModel end
