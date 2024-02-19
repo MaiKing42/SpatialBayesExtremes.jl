@@ -3,6 +3,6 @@ struct UnivariateGEVModel <: UnivariateExtremeValueModel
 end
 
 
-function getdistribution(θ::NamedTuple{(:μ, :σ, :ξ)}{T}) where T<:Real
+function getdistribution(model::UnivariateGEVModel,θ::NamedTuple{(:μ, :σ, :ξ)}{T}) where T<:Real
     return GEV(θ.μ, θ.σ, θ.ξ)
 end
