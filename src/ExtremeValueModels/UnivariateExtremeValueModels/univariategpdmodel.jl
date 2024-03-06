@@ -1,5 +1,5 @@
 struct UnivariateGPDModel <: UnivariateExtremeValueModel
-    data::Vector{Float64}
+    values::Vector{Float64}
 end
 
 function getdistribution(model::UnivariateGPDModel,θ::NamedTuple{(:μ, :σ, :ξ)}{T}) where T<:Real
