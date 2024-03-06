@@ -13,7 +13,7 @@ function evaluateShapeParameter(model::RegressionGPDModel, ξ::Vector{Float64})
     return model.shapeMatrix * ξ
 end
 
-function evaluateParameters(model::RegressionModel, θ::NamedTuple{(:σ, :ξ), Tuple{Vector{Float64}, Vector{Float64}, Vector{Float64}}})
+function evaluateParameters(model::RegressionModel, θ::NamedTuple{(:σ, :ξ), Tuple{Vector{Float64}, Vector{Float64}}})
     return (evaluateLocationParameter(model, θ.σ), evaluateScaleParameter(model, θ.ξ))
 end
 
