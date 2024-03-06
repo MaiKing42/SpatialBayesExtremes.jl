@@ -17,8 +17,8 @@ function evaluateShapeParameter(model::RegressionGEVModel, θ::Array{Float64, 1}
     return model.shapeMatrix * θ
 end
 
-function evaluateParameters(model::RegressionModel, θ::NamedTuple{(:location, :scale, :shape), Tuple{Array{Float64, 1}, Array{Float64, 1}, Array{Float64, 1}}})
+function evaluateParameters(model::RegressionGEVModel, θ::NamedTuple{(:location, :scale, :shape), Tuple{Array{Float64, 1}, Array{Float64, 1}, Array{Float64, 1}}})
     return (evaluateLocationParameter(model, θ.location), evaluateScaleParameter(model, θ.scale), evaluateShapeParameter(model, θ.shape))
 end
 
-generateDistribution(modeltype::Type{RegressionGEVModel}, μ::Real, σ::Real, ξ::Real) = GEV(μ, σ, ξ)
+generateDistribution(modeltype::Type{RegressionGEVModel}, μ::Real, σ::Real, ξ::Real) = GeneralizedExtremeValue(μ, σ, ξ)
