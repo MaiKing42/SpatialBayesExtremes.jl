@@ -22,4 +22,4 @@ function evaluateParameters(model::RegressionModel, θ::NamedTuple{(:location, :
     return (evaluateLocationParameter(model, θ.location), evaluateScaleParameter(model, θ.scale), evaluateShapeParameter(model, θ.shape))
 end
 
-generateDistribution(modeltype::Type{GegressionGEVModel}, μ::Real, σ::Real, ξ::Real) = GEV(μ, σ, ξ)
+generateDistribution(modeltype::Type{RegressionGEVModel}, μ::Real, σ::Real, ξ::Real) = GEV(μ, σ, ξ)
