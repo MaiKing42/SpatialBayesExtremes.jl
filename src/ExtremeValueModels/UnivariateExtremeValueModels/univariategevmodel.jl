@@ -1,5 +1,5 @@
 struct UnivariateGEVModel <: UnivariateExtremeValueModel
-    values::Vector{Float64}
+    data::Vector{Float64}
 end
 
 
