@@ -1,4 +1,4 @@
-struct RegressionGEVModel
+struct RegressionGEVModel<:RegressionExtremeValueModel
     data::DataFrame
     values::Symbol
     locationMatrix::Array{Float64, 2}
