@@ -1,9 +1,8 @@
 struct RegressionGEVModel<:RegressionExtremeValueModel
-    data::DataFrame
-    values::Symbol
-    locationMatrix::Array{Float64, 2}
-    scaleMatrix::Array{Float64, 2}
-    shapeMatrix::Array{Float64, 2}
+    data::Vector{Float64}
+    locationMatrix::Matrix{Float64}
+    scaleMatrix::Matrix{Float64}
+    shapeMatrix::Matrix{Float64}
 end
 
 function evaluateLocationParameter(model::RegressionGEVModel, θ::Array{Float64, 1})
