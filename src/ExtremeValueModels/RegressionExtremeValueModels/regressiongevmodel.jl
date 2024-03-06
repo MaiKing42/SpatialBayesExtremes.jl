@@ -5,20 +5,20 @@ struct RegressionGEVModel<:RegressionExtremeValueModel
     shapeMatrix::Matrix{Float64}
 end
 
-function evaluateLocationParameter(model::RegressionGEVModel, θ::Array{Float64, 1})
-    return model.locationMatrix * θ
+function evaluateLocationParameter(model::RegressionGEVModel, μ::Vector{Float64})
+    return model.locationMatrix * μ
 end
 
-function evaluateScaleParameter(model::RegressionGEVModel, θ::Array{Float64, 1})
-    return exp.(model.scaleMatrix * θ)
+function evaluateScaleParameter(model::RegressionGEVModel, σ::Vector{Float64})
+    return exp.(model.scaleMatrix * σ)
 end
 
-function evaluateShapeParameter(model::RegressionGEVModel, θ::Array{Float64, 1})
-    return model.shapeMatrix * θ
+function evaluateShapeParameter(model::RegressionGEVModel, ξ::Vector{Float64})
+    return model.shapeMatrix * ξ
 end
 
-function evaluateParameters(model::RegressionGEVModel, θ::NamedTuple{(:location, :scale, :shape), Tuple{Array{Float64, 1}, Array{Float64, 1}, Array{Float64, 1}}})
-    return (evaluateLocationParameter(model, θ.location), evaluateScaleParameter(model, θ.scale), evaluateShapeParameter(model, θ.shape))
+function evaluateParameters(model::RegressionGEVModel, θ::NamedTuple{(:μ, :σ, :ξ), Tuple{Vector{Float64}, Vector{Float64}, Vector{Float64}}})
+    return (evaluateLocationParameter(model, θ.μ), evaluateScaleParameter(model, θ.σ), evaluateShapeParameter(model, θ.ξ))
 end
 
 generateDistribution(modeltype::Type{RegressionGEVModel}, μ::Real, σ::Real, ξ::Real) = GeneralizedExtremeValue(μ, σ, ξ)

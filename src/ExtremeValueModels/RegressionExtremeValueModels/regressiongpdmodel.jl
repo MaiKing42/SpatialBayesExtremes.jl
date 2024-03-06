@@ -5,15 +5,15 @@ struct RegressionGPDModel<:RegressionExtremeValueModel
 end
 
 
-function evaluateScaleParameter(model::RegressionGPDModel, θ::Array{Float64, 1})
-    return exp.(model.scaleMatrix * θ)
+function evaluateScaleParameter(model::RegressionGPDModel, σ::Vector{Float64})
+    return exp.(model.scaleMatrix * σ)
 end
 
-function evaluateShapeParameter(model::RegressionGPDModel, θ::Array{Float64, 1})
-    return model.shapeMatrix * θ
+function evaluateShapeParameter(model::RegressionGPDModel, ξ::Vector{Float64})
+    return model.shapeMatrix * ξ
 end
 
-function evaluateParameters(model::RegressionModel, θ::NamedTuple{(:σ, :ξ), Tuple{Array{Float64, 1}, Array{Float64, 1}, Array{Float64, 1}}})
+function evaluateParameters(model::RegressionModel, θ::NamedTuple{(:σ, :ξ), Tuple{Vector{Float64}, Vector{Float64}, Vector{Float64}}})
     return (evaluateLocationParameter(model, θ.σ), evaluateScaleParameter(model, θ.ξ))
 end
 
