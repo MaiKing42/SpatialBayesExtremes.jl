@@ -21,4 +21,4 @@ function evaluateParameters(model::RegressionGEVModel, θ::NamedTuple{(:μ, :σ,
     return (evaluateLocationParameter(model, θ.μ), evaluateScaleParameter(model, θ.σ), evaluateShapeParameter(model, θ.ξ))
 end
 
-generateDistribution(modeltype::Type{RegressionGEVModel}, μ::Real, σ::Real, ξ::Real) = GeneralizedExtremeValue(μ, σ, ξ)
+generate_distribution(modeltype::Type{RegressionGEVModel}, μ::Real, σ::Real, ξ::Real) = GeneralizedExtremeValue(μ, σ, ξ)

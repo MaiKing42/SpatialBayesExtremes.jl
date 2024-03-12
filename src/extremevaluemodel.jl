@@ -6,7 +6,7 @@ Abstract type for extreme value models.
 abstract type ExtremeValueModel end
 
 function loglikelihood(model::ExtremeValueModel,θ)
-    distributions = getdistribution(model,θ)
+    distributions = get_distribution(model,θ)
     return sum(logpdf.(distributions, model.data))
 end
 

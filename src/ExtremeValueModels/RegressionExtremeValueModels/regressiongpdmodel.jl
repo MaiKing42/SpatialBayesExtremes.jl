@@ -17,4 +17,4 @@ function evaluateParameters(model::RegressionModel, θ::NamedTuple{(:σ, :ξ), T
     return (evaluateLocationParameter(model, θ.σ), evaluateScaleParameter(model, θ.ξ))
 end
 
-generateDistribution(modeltype::Type{RegressionGPDModel}, σ::Real, ξ::Real) = GeneralizedPareto(σ, ξ)
+generate_distribution(modeltype::Type{RegressionGPDModel}, σ::Real, ξ::Real) = GeneralizedPareto(σ, ξ)
