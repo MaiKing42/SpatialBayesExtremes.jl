@@ -1,4 +1,4 @@
-struct RegressionGEVModel<:RegressionExtremeValueModel
+struct RegressionGEVModel<:RegressionExtremeValueModel{GeneralizedExtremeValue}
     data::Vector{Float64}
     locationMatrix::Matrix{Float64}
     scaleMatrix::Matrix{Float64}
@@ -20,5 +20,3 @@ end
 function evaluateParameters(model::RegressionGEVModel, θ::NamedTuple{(:μ, :σ, :ξ), Tuple{Vector{Float64}, Vector{Float64}, Vector{Float64}}})
     return (evaluateLocationParameter(model, θ.μ), evaluateScaleParameter(model, θ.σ), evaluateShapeParameter(model, θ.ξ))
 end
-
-generate_distribution(modeltype::Type{RegressionGEVModel}, μ::Real, σ::Real, ξ::Real) = GeneralizedExtremeValue(μ, σ, ξ)

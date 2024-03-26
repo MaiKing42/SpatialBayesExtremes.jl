@@ -1,4 +1,4 @@
-struct RegressionGPDModel<:RegressionExtremeValueModel
+struct RegressionGPDModel<:RegressionExtremeValueModel{GeneralizedPareto}
     data::Vector{Float64}
     scaleMatrix::Matrix{Float64}
     shapeMatrix::Matrix{Float64}
@@ -16,5 +16,3 @@ end
 function evaluateParameters(model::RegressionModel, θ::NamedTuple{(:σ, :ξ), Tuple{Vector{Float64}, Vector{Float64}}})
     return (evaluateLocationParameter(model, θ.σ), evaluateScaleParameter(model, θ.ξ))
 end
-
-generate_distribution(modeltype::Type{RegressionGPDModel}, σ::Real, ξ::Real) = GeneralizedPareto(σ, ξ)
