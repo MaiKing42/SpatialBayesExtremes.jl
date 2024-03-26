@@ -1,9 +1,9 @@
 """
-    ExtremeValueModel
+    ExtremeValueModel{T,D}
 
 Abstract type for extreme value models.
 """
-abstract type ExtremeValueModel end
+abstract type ExtremeValueModel{T,D} end
 
 function loglikelihood(model::ExtremeValueModel,θ)
     distributions = get_distribution(model,θ)
