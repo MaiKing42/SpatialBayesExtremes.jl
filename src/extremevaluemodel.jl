@@ -24,10 +24,7 @@ Abstract type for extreme value models.
 """
 abstract type ExtremeValueModel{T<:ModelType,D<:Distribution} end
 
-function loglikelihood(model::ExtremeValueModel,θ)
-    distributions = get_distribution(model,θ)
-    return sum(logpdf.(distributions, model.data))
-end
+loglikelihood(model::ExtremeValueModel,θ) = sum(logpdf.(get_distibutions(model,θ), model.data))
 
 likelihood(model::ExtremeValueModel,θ) = exp(loglikelihood(model,θ))
 
