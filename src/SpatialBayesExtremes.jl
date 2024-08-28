@@ -1,6 +1,6 @@
 module SpatialBayesExtremes
 
-using Distributions, DataFrames, StatsModels, ProgressMeter
+using Distributions, DataFrames, StatsModels, ProgressMeter, ForwardDiff
 
 export 
     ExtremeValueModel,
