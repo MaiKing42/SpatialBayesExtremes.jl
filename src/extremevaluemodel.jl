@@ -28,5 +28,7 @@ loglikelihood(model::ExtremeValueModel,θ) = sum(logpdf.(get_distibutions(model,
 
 likelihood(model::ExtremeValueModel,θ) = exp(loglikelihood(model,θ))
 
+function score_function end
+
 include(joinpath("ExtremeValueModels","univariateextremevaluemodel.jl"))
 include(joinpath("ExtremeValueModels","regressionextremevaluemodel.jl"))
