@@ -10,7 +10,7 @@ const UnivariateExtremeValueModel = ExtremeValueModel{Univariate}
 """
 get_distribution(model::UnivariateExtremeValueModel{D},θ::NamedTuple) where {D} = D.(model, θ...)
 
-loglikelihood_derivative(model::UnivariateExtremeValueModel,θ::NamedTuple) = map(x -> sum, score_function(model,θ))
+loglikelihood_derivative(model::UnivariateExtremeValueModel,θ::NamedTuple) = map(sum, score_function(model,θ))
 
 include(joinpath("UnivariateExtremeValueModels","univariategevmodel.jl"))
 include(joinpath("UnivariateExtremeValueModels","univariategpdmodel.jl"))
