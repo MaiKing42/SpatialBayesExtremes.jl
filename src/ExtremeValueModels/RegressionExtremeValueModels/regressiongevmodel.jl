@@ -18,5 +18,5 @@ function evaluateShapeParameter(model::RegressionGEVModel, ξ::Vector{Float64})
 end
 
 function evaluateParameters(model::RegressionGEVModel, θ::NamedTuple{(:μ, :σ, :ξ), Tuple{Vector{Float64}, Vector{Float64}, Vector{Float64}}})
-    return (evaluateLocationParameter(model, θ.μ), evaluateScaleParameter(model, θ.σ), evaluateShapeParameter(model, θ.ξ))
+    return (μ = evaluateLocationParameter(model, θ.μ),σ =  evaluateScaleParameter(model, θ.σ),ξ = evaluateShapeParameter(model, θ.ξ))
 end
