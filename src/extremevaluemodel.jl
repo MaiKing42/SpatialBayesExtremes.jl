@@ -24,11 +24,11 @@ Abstract type for extreme value models.
 """
 abstract type ExtremeValueModel{T<:ModelType,D<:Distribution} end
 
-loglikelihood(model::ExtremeValueModel,θ) = sum(logpdf.(get_distibutions(model,θ), model.data))
+loglikelihood(model::ExtremeValueModel,θ::NamedTuple) = sum(logpdf.(get_distibutions(model,θ), model.data))
 
-likelihood(model::ExtremeValueModel,θ) = exp(loglikelihood(model,θ))
+likelihood(model::ExtremeValueModel,θ::NamedTuple) = exp(loglikelihood(model,θ))
 
-score_function(model::ExtremeValueModel,θ) = ForwardDiff.gradient(θ -> loglikelihood(model,θ),θ)
+score_function(model::ExtremeValueModel,θ)::NamedTuple =  NamedTuple(k=>ForwardDiff.derivative(x -> sum(logpdf.(get_distributions(model,merge(θ, [k=>x])...),1.0)),v) for (k,v) in pairs(θ))
 
 include(joinpath("ExtremeValueModels","univariateextremevaluemodel.jl"))
 include(joinpath("ExtremeValueModels","regressionextremevaluemodel.jl"))
