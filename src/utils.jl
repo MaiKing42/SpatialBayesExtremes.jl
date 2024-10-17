@@ -18,4 +18,5 @@ function score_gev(data::Real,μ::Real,σ::Real,ξ::Real)
     G[1] = (ξ+1-u)/(σ*(1+ξ_z))
     G[2] = ((1-u)*z-1)/(σ*(1+ξ_z))
     G[3] = (1-u)*dξ_log_u-z/(1+ξ_z)
+    return G
 end
