@@ -3,7 +3,7 @@
 
 Abstract type for regression extreme value models.
 """
-const RegressionExtremeValueModel = ExtremeValueModel{Regression}
+const RegressionExtremeValueModel{D<:UnivariateDistribution} = ExtremeValueModel{Regression,D}
 """
     get_distribution(model::RegressionExtremeValueModel, θ::NamedTuple)
 """
