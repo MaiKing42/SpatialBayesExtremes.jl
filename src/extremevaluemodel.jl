@@ -22,7 +22,23 @@ abstract type Univariate <: ModelType end
 
 Abstract type for extreme value models.
 """
-abstract type ExtremeValueModel{T<:ModelType,D<:Distribution} end
+abstract type ExtremeValueModel end
+
+"""
+    DiscreteExtremeValueModel{T,D}
+
+Abstract type for discrete extreme value models.
+"""
+
+abstract type DiscreteExtremeValueModel end
+
+"""
+    ContinuousExtremeValueModel{T,D}
+
+Abstract type for continuous extreme value models.
+"""
+
+abstract type ContinuousExtremeValueModel end
 
 loglikelihood(model::ExtremeValueModel,θ::NamedTuple) = sum(logpdf.(get_distibutions(model,θ), model.data))
 
