@@ -10,5 +10,6 @@ export
     likelihood
 
 include("utils.jl")
-include(joinpath("ExtremeValueModels","extremevaluemodel.jl"))
+include("extremevaluemodel.jl")
+include("fittedestimator.jl")
 end

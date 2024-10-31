@@ -1,1 +1,0 @@
-abstract type FittedEstimator{M<:ExtremeValueModel} end

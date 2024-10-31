@@ -6,4 +6,4 @@ Abstract type for discrete extreme value models.
 
 abstract type DiscreteExtremeValueModel <: ExtremeValueModel end
 
-include(joinpath("UnivariateExtremeValueModels","univariateextremevaluemodel.jl"))
+include(joinpath("DiscreteExtremeValueModels","univariateextremevaluemodel.jl"))
