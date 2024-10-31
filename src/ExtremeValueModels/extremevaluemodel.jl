@@ -13,5 +13,5 @@ score_function(model::ExtremeValueModel,θ::NamedTuple) =  NamedTuple(k=>Forward
 
 score_function(model::UnivariateExtremeValueModel{GeneralizedExtremeValue},θ::NamedTuple) where {T} = score_gev.(model.data,θ.μ,θ.σ,θ.ξ)
 
-include(joinpath("DiscreteExtremeValueModel","discreteextremevaluemodel.jl"))
-include(joinpath("ContinuousExtremeValueModel","continuousextremevaluemodel.jl"))
+include(joinpath("DiscreteExtremeValueModels","discreteextremevaluemodel.jl"))
+include(joinpath("ContinuousExtremeValueModels","continuousextremevaluemodel.jl"))
