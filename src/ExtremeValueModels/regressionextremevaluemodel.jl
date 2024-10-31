@@ -3,11 +3,12 @@
 
 Abstract type for regression extreme value models.
 """
-const RegressionExtremeValueModel{D<:UnivariateDistribution} = ExtremeValueModel{Regression,D}
+abstract type RegressionExtremeValueModel{D<:UnivariateDistribution} <: ContinuousExtremeValueModel end
+
 """
     get_distribution(model::RegressionExtremeValueModel, θ::NamedTuple)
 """
-get_distribution(model::RegressionExtremeValueModel{D},θ::NamedTuple) where {D} = D.(model, evaluateParameters(model, θ)...)
+get_distribution(model::RegressionExtremeValueModel{D},θ::NamedTuple) where {D} = D.(evaluateParameters(model, θ)...)
 
 function loglikelihood_derivative(model::RegressionExtremeValueModel,θ::NamedTuple)
     scores = score_function(model,evaluateParameters(model, θ))
