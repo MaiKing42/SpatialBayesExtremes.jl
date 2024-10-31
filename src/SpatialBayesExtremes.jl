@@ -10,5 +10,5 @@ export
     likelihood
 
 include("utils.jl")
-include("extremevaluemodel.jl")
+include(joinpath("ExtremeValueModels","extremevaluemodel.jl"))
 end
