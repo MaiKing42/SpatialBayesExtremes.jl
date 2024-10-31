@@ -3,7 +3,7 @@
 
 Abstract type for univariate extreme value models.
 """
-abstract type UnivariateExtremeValueModel{D<:UnivariateDistribution} <: DiscreteExtremeVaöueModel end
+abstract type UnivariateExtremeValueModel{D<:UnivariateDistribution} <: DiscreteExtremeValueModel end
 
 """
     get_distribution(model::UnivariateExtremeValueModel, θ::NamedTuple)
