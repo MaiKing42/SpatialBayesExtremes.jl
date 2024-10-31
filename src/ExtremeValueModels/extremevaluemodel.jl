@@ -1,44 +1,25 @@
 """
-T<:ModelType specifies the type of the Extreme Value model.
-"""
-abstract type ModelType end
-
-"""
-    Regression <: ModelType
-
-Type for regression models.
-"""
-abstract type Regression <: ModelType end
-
-"""
-    Univariate <: ModelType
-
-Type for univariate models.
-"""
-abstract type Univariate <: ModelType end
-
-"""
-    ExtremeValueModel{T,D}
+    ExtremeValueModel
 
 Abstract type for extreme value models.
 """
 abstract type ExtremeValueModel end
 
 """
-    DiscreteExtremeValueModel{T,D}
+    DiscreteExtremeValueModel
 
 Abstract type for discrete extreme value models.
 """
 
-abstract type DiscreteExtremeValueModel end
+abstract type DiscreteExtremeValueModel <: ExtremeValueModel end
 
 """
-    ContinuousExtremeValueModel{T,D}
+    ContinuousExtremeValueModel
 
 Abstract type for continuous extreme value models.
 """
 
-abstract type ContinuousExtremeValueModel end
+abstract type ContinuousExtremeValueModel <: ExtremeValueModel end
 
 loglikelihood(model::ExtremeValueModel,θ::NamedTuple) = sum(logpdf.(get_distibutions(model,θ), model.data))
 
