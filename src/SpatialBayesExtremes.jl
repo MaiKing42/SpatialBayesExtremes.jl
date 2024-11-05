@@ -4,10 +4,18 @@ using Distributions, DataFrames, StatsModels, ProgressMeter, ForwardDiff
 
 export 
     ExtremeValueModel,
+    ContinuousExtremeValueModel,
     RegressionExtremeValueModel,
+    RegressionGEVModel,
+    RegressionGPDModel,
     UnivariateExtremeValueModel,
+    UnivariateGEVModel,
+    UnivariateGPDModel,
+    get_parameters,
+    get_distribution,
     loglikelihood,
-    likelihood
+    likelihood,
+    loglikelihood_derivative
 
 include("utils.jl")
 include("extremevaluemodel.jl")
