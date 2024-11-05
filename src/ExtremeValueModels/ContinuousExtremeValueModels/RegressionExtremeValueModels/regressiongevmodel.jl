@@ -8,6 +8,8 @@ struct RegressionGEVModel<:RegressionExtremeValueModel{GeneralizedExtremeValue}
     shapeMatrix::Matrix{Float64}
 end
 
+get_parameters(model::RegressionGEVModel) = (:μ, :σ, :ξ)
+
 function evaluateLocationParameter(model::RegressionGEVModel, μ::Vector{Float64})
     return model.locationMatrix * μ
 end
