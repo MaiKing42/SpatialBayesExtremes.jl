@@ -1,4 +1,4 @@
-struct UnivariateGEVModel <: UnivariateExtremeValueModel{GeneralizedExtremeValue}
+struct UnivariateGEVModel <: UnivariateExtremeValueModel
     data::Vector{Float64}
 end
 

@@ -3,7 +3,7 @@
 
 Abstract type for univariate extreme value models.
 """
-abstract type UnivariateExtremeValueModel{D<:UnivariateDistribution} <: DiscreteExtremeValueModel end
+abstract type UnivariateExtremeValueModel <: DiscreteExtremeValueModel end
 
 loglikelihood_derivative(model::UnivariateExtremeValueModel,θ::NamedTuple) = map(sum, score_function(model,θ))
 
