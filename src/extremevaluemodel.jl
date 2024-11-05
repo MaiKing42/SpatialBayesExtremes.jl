@@ -13,7 +13,15 @@ loglikelihood(model::ExtremeValueModel,θ::NamedTuple) = sum(logpdf.(get_distibu
 
 likelihood(model::ExtremeValueModel,θ::NamedTuple) = exp(loglikelihood(model,θ))
 
-function loglikelihood_derivative(model::ExtremeValueModel,θ::NamedTuple) end
+function loglikelihood_derivative(model::ExtremeValueModel,θ::NamedTuple)
+    derivative = NamedTuple()
+    keys = get_parameters(model)
+    for key in keys
+        partial_derivative = ForwardDiff.derivative(θ -> loglikelihood(model, merge(θ, key => θ[key])), θ[key])
+        derivative = merge(derivative, [key => partial_derivative])
+    end
+    return derivative
+end
 
 
 
