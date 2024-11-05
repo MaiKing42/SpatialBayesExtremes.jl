@@ -5,11 +5,16 @@ Abstract type for extreme value models.
 """
 abstract type ExtremeValueModel end
 
+function get_parameters(model::ExtremeValueModel) end
+
 function get_distribution(model::ExtremeValueModel,θ::NamedTuple) end
 
 loglikelihood(model::ExtremeValueModel,θ::NamedTuple) = sum(logpdf.(get_distibution(model,θ), model.data))
 
 likelihood(model::ExtremeValueModel,θ::NamedTuple) = exp(loglikelihood(model,θ))
+
+function loglikelihood_derivative(model::ExtremeValueModel,θ::NamedTuple) end
+
 
 
 include(joinpath("ExtremeValueModels","discreteextremevaluemodel.jl"))
