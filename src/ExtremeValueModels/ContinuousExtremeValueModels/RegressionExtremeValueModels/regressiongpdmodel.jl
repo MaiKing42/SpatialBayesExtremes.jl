@@ -1,4 +1,4 @@
-struct RegressionGPDModel<:RegressionExtremeValueModel{GeneralizedPareto}
+struct RegressionGPDModel<:RegressionExtremeValueModel
     data::Vector{Float64}
     scaleFormula::FormulaTerm
     shapeFormula::FormulaTerm
