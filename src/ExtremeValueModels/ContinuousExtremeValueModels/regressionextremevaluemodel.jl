@@ -5,9 +5,8 @@ Abstract type for regression extreme value models.
 """
 abstract type RegressionExtremeValueModel{D<:UnivariateDistribution} <: ContinuousExtremeValueModel end
 
-"""
-    get_distribution(model::RegressionExtremeValueModel, θ::NamedTuple)
-"""
+function get_singlesite_distribution(model::RegressionExtremeValueModel, θ::NamedTuple) end
+
 get_distribution(model::RegressionExtremeValueModel{D},θ::NamedTuple) = get_singlesite_distribution.(model, evaluateParameters(θ))
 
 get_distribution(model::RegressionExtremeValueModel{D},covariates::DataFrame,θ::NamedTuple) = get_singlesite_distribution.(model, evaluateParameters(covariates,θ))
