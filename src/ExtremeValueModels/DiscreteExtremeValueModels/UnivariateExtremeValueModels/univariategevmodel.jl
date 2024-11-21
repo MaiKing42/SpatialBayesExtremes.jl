@@ -20,6 +20,6 @@ _evaluateParameters(model::UnivariateGEVModel; μ, σ, ξ) = (μ = evaluateLocat
 
 evaluateParameters(model::UnivariateGEVModel, θ::NamedTuple) = _evaluateParameters(model; θ...)
 
-_evaluateDerivative_Parameters(model::UnivariateGEVModel; μ, σ, ξ) = (μ = evaluateDerivativeLocationParameter(model, μ),σ =  evaluateDerivativeScaleParameter(model, σ),ξ = evaluateDerivativeShapeParameter(model, ξ))
+_evaluateDerivativeParameters(model::UnivariateGEVModel; μ, σ, ξ) = (μ = evaluateDerivativeLocationParameter(model, μ),σ =  evaluateDerivativeScaleParameter(model, σ),ξ = evaluateDerivativeShapeParameter(model, ξ))
 
-evaluateDerivative_Parameters(model::UnivariateGEVModel, θ::NamedTuple) = _evaluateDerivative_Parameters(model; θ...)
+evaluateDerivativeParameters(model::UnivariateGEVModel, θ::NamedTuple) = _evaluateDerivativeParameters(model; θ...)
