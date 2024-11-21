@@ -3,7 +3,7 @@
 
 Abstract type for univariate extreme value models.
 """
-abstract type UnivariateExtremeValueModel{D<:UnivariateDistribution} <: DiscreteDistributionModel end
+abstract type UnivariateExtremeValueModel{D<:UnivariateDistribution} <: DiscreteExtremeValueModel end
 
 function evaluateParameters(model::UnivariateExtremeValueModel,θ::NamedTuple) end
 
