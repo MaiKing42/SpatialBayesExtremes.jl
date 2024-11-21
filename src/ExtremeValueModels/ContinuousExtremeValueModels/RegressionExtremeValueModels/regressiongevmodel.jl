@@ -1,4 +1,4 @@
-struct RegressionGEVModel<:RegressionExtremeValueModel
+struct RegressionGEVModel<:RegressionExtremeValueModel{GeneralizedExtremeValue}
     data::Vector{Float64}
     locationFormula::FormulaTerm
     scaleFormula::FormulaTerm
