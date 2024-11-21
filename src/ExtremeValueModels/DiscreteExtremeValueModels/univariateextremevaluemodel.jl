@@ -7,16 +7,20 @@ abstract type UnivariateExtremeValueModel{D<:UnivariateDistribution} <: Discrete
 
 function evaluateParameters(model::UnivariateExtremeValueModel,θ::NamedTuple) end
 
-function evaluateDerivative_Parameters(model::UnivariateExtremeValueModel,θ::NamedTuple) end
+function evaluateDerivativeParameters(model::UnivariateExtremeValueModel,θ::NamedTuple) end
 
 function get_distribution(model::UnivariateExtremeValueModel{D},θ::NamedTuple) where {D}
     return D(evaluate_parameters(model,θ)...)
 end
 
-loglikelihood_derivative(model::UnivariateExtremeValueModel{D},θ::NamedTuple) where {D}
-    params = evaluate_parameters(model,θ)
-    params_derivatives = evaluateDerivative_Parameters(model,θ)
-    
+function loglikelihood_derivative(model::UnivariateExtremeValueModel{D},θ::NamedTuple) where {D}
+    params = get_parameters(model)
+    dist = get_distribution(model,θ)
+    scores = score_function(dist,model.data)
+    derivatives = evaluateDerivativeParameters(model,θ)
+    return NamedTuple(k=>sum(map(x->x[k],scores))*derivatives[k] for k in params)
+end
+
 
 include(joinpath("UnivariateExtremeValueModels","univariategevmodel.jl"))
 include(joinpath("UnivariateExtremeValueModels","univariategpdmodel.jl"))
