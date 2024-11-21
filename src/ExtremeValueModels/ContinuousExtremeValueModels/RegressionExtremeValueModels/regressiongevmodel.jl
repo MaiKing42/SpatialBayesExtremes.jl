@@ -58,7 +58,7 @@ function evaluateJacobian_shapeModel(model::RegressionGEVModel, covariates::Data
     return modelmatrix(model.shapeFormula.rhs, covariates)
 end
 
-_evaluateParameters(model::RegressionGEVModel; μ, logσ, ξ) = (μ = evaluateLocationParameter(model, μ),σ =  evaluateScaleParameter(model, σ),ξ = evaluateShapeParameter(model, ξ))
+_evaluateParameters(model::RegressionGEVModel; μ, σ, ξ) = (μ = evaluateLocationParameter(model, μ),σ =  evaluateScaleParameter(model, σ),ξ = evaluateShapeParameter(model, ξ))
 
 evaluateParameters(model::RegressionGEVModel, θ::NamedTuple) = _evaluateParameters(model;θ...)
 
