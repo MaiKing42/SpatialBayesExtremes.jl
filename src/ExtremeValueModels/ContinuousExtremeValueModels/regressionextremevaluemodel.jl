@@ -11,7 +11,11 @@ get_distribution(model::RegressionExtremeValueModel{D},covariates::DataFrame,θ:
 
 function loglikelihood_derivative(model::RegressionExtremeValueModel,θ::NamedTuple)
     param_names = get_parameters(model)
-    params = evaluateParameters(model,θ)
     dists = get_distribution(model,θ)
-    scores = score_function.(dists, model.data)
-    # transform scores into named tuple of vectors
+    scores = score_function.(dists,model.data)
+    jacobians = evaluateJacobian_parameterModels(model, θ)
+    return NamedTuple(k=>(map(x->x[k],scores)'*jacobians[k])' for k in param_names)
+end
+
+include(joinpath("RegressionExtremeValueModels","regressiongevmodel.jl"))
+include(joinpath("RegressionExtremeValueModels","regressiongpdmodel.jl"))
