@@ -1,7 +1,7 @@
 function score_function(dist::GeneralizedExtremeValue,data::Float64)
     ϵ = 1e-15
     μ = dist.μ
-    σ = dist.σ + ϵ
+    σ = dist.σ
     ξ = dist.ξ
     z = (data - μ)/σ
     ξ_z = ξ*z
