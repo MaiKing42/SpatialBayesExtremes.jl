@@ -3,7 +3,7 @@ module SpatialBayesExtremes
 using Distributions, DataFrames, StatsModels, ProgressMeter, ForwardDiff, SpecialFunctions, Roots, Optim
 
 export 
-    ExtremeValueModel,s
+    ExtremeValueModel,
     ContinuousExtremeValueModel,
     RegressionExtremeValueModel,
     RegressionGEVModel,
