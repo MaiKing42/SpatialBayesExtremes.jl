@@ -20,4 +20,5 @@ export
 include("utils.jl")
 include("extremevaluemodel.jl")
 include("fittedestimator.jl")
+include("parameterestimation.jl")
 end
