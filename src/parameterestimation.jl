@@ -1,3 +1,3 @@
-include(joinpath("FittedEstimators","pwm.jl"))
-include(joinpath("FittedEstimators","maximumlikelihood.jl"))
-include(joinpath("FittedEstimators","bayesian.jl"))
+include(joinpath("ParameterEstimations","pwm.jl"))
+include(joinpath("ParameterEstimations","maximumlikelihood.jl"))
+include(joinpath("ParameterEstimations","bayesian.jl"))
