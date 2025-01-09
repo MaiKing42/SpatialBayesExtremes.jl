@@ -1,4 +1,4 @@
-function fit(data, modeltype, estimator) end
+function fit(model, estimator) end
 
 include(joinpath("ParameterEstimations","pwm.jl"))
 include(joinpath("ParameterEstimations","maximumlikelihood.jl"))
