@@ -1,5 +1,5 @@
 struct UnivariateGEVModel <: UnivariateExtremeValueModel{GeneralizedExtremeValue}
-    data::Vector{Float64}
+    data::Vector{<:Real}
 end
 
 get_parameters(model::UnivariateGEVModel) = (:μ,:σ,:ξ)
