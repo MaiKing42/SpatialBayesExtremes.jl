@@ -10,5 +10,4 @@ function pwm(x::Vector{<:Real},p::Int,r::Int,s::Int)::Real
     m = 1/n*sum( y[i]^p * binomial(i-1,r)/binomial(n-1,r) * binomial(n-i,s)/binomial(n-1,s) for i=1:n )
    
     return m
-   
-   end
+end
