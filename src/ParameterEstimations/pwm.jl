@@ -13,4 +13,4 @@ function pwm(x::Vector{<:Real},p::Int,r::Int,s::Int)::Real
 end
 
 include(joinpath("PWM","pwm_gev.jl"))
-include(joinpath("PWM","pwm_gp.jl"))
+include(joinpath("PWM","pwm_gpd.jl"))
