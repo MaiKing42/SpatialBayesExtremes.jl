@@ -41,8 +41,7 @@ function score_function(dist::GeneralizedPareto,data::Float64)
         dξ_log_u = 1/ξ*(1/ξ*log(1+ξ*z)-z/(1+ξ*z))
     end
     ∂μ = (ξ+1)/(σ*(1+ξ*z))
-    ∂σ = (ξ+1)*z/(σ*(1+ξ*z))
+    ∂σ = -1/σ + (ξ+1)*z/(σ*(1+ξ*z))
     ∂ξ = log(u) + (ξ+1)*dξ_log_u
     return (μ=∂μ,σ=∂σ,ξ=∂ξ)
-
 end
