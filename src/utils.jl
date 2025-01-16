@@ -37,11 +37,12 @@ function score_function(dist::GeneralizedPareto,data::Float64)
         u = exp(-z)
         dξ_log_u = z^2/2
     else
-        u = 1/(1+ξ*z)
+        u = (1+ξ*z)^(-1/ξ)
+        dξ_log_u = 1/ξ*(1/ξ*log(1+ξ*z)-z/(1+ξ*z))
     end
-    ∂μ = (1-u)/(σ*ξ)
-    ∂σ = (1-u*z)/(σ*ξ)
-    ∂ξ = (1-u)*dξ_log_u-z
+    ∂μ = (ξ+1)/(σ*(1+ξ*z))
+    ∂σ = (ξ+1)*z/(σ*(1+ξ*z))
+    ∂ξ = log(u) + (ξ+1)*dξ_log_u
     return (μ=∂μ,σ=∂σ,ξ=∂ξ)
 
 end
