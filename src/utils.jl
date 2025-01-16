@@ -22,7 +22,6 @@ function score_function(dist::GeneralizedExtremeValue,data::Float64)
     return (μ=∂μ,σ=∂σ,ξ=∂ξ)
 end
 
-
 function score_function(dist::GeneralizedPareto,data::Float64)
     μ = dist.μ
     σ = dist.σ
