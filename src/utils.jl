@@ -4,11 +4,11 @@ function score_function(dist::GeneralizedExtremeValue,data::Float64)
     ξ = dist.ξ
     z = (data - μ)/σ
     ξ_z = ξ*z
-    if dist.ξ == 0
+    if ξ == 0
         u = exp(-z)
         dξ_log_u = z^2/2
     elseif ξ_z>-1
-        u = (1+ξ_z).^(-1/ξ)
+        u = (1+ξ_z)^(-1/ξ)
         dξ_log_u = 1/dist.ξ*(1/ξ*log(1+ξ_z)-z/(1+ξ_z))
     else
         ∂μ = Inf
@@ -20,4 +20,28 @@ function score_function(dist::GeneralizedExtremeValue,data::Float64)
     ∂σ = ((1-u)*z-1)/(σ*(1+ξ_z))
     ∂ξ = (1-u)*dξ_log_u-z/(1+ξ_z)
     return (μ=∂μ,σ=∂σ,ξ=∂ξ)
+end
+
+
+function score_function(dist::GeneralizedPareto,data::Float64)
+    μ = dist.μ
+    σ = dist.σ
+    ξ = dist.ξ
+    z = (data - μ)/σ
+    if (ξ >= 0 && z<=0) || (ξ<0 && (z>-1/ξ || z<0))
+        ∂μ = Inf
+        ∂σ = Inf
+        ∂ξ = Inf
+        return (μ=∂μ,σ=∂σ,ξ=∂ξ)
+    elseif ξ == 0
+        u = exp(-z)
+        dξ_log_u = z^2/2
+    else
+        u = 1/(1+ξ*z)
+    end
+    ∂μ = (1-u)/(σ*ξ)
+    ∂σ = (1-u*z)/(σ*ξ)
+    ∂ξ = (1-u)*dξ_log_u-z
+    return (μ=∂μ,σ=∂σ,ξ=∂ξ)
+
 end
