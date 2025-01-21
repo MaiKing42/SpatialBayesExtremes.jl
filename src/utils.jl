@@ -51,5 +51,5 @@ end
 
 function mean_excess_points(data::Vector{T}) where {T<:Real}
     n = length(data)
-    return [(data[i],mean_excess(data,data[i])) for i in 1:n-1]
+    return [mean_excess(data,data[i]) for i in 1:n-1]
 end
