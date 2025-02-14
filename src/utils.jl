@@ -22,6 +22,16 @@ function score_function(dist::GeneralizedExtremeValue,data::Float64)
     return (μ=∂μ,σ=∂σ,ξ=∂ξ)
 end
 
+function score_function(dist::Gumbel,data::Float64)
+    μ = dist.μ
+    σ = dist.σ
+    z = (data - μ)/σ
+    u = exp(-z)
+    ∂μ = (1-u)/σ
+    ∂σ = ((1-u)*z-1)/σ
+    return (μ=∂μ,σ=∂σ)
+end
+
 function score_function(dist::GeneralizedPareto,data::Float64)
     μ = dist.μ
     σ = dist.σ
