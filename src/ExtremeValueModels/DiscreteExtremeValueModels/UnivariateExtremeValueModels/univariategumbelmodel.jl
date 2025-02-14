@@ -1,4 +1,4 @@
-struct UnivariateGumbelModel <: UnivariateExtremeValueModel
+struct UnivariateGumbelModel <: UnivariateExtremeValueModel{Gumbel}
     data::Vector{<:Real}
 end
 
