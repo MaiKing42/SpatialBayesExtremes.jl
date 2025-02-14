@@ -12,5 +12,5 @@ function fit(model::UnivariateGumbelModel, estimator::typeof(PWMEstimator))
 
     μ = β_0 - Base.MathConstants.eulergamma*σ
 
-    return PWMEstimator{UnivariateGEVModel}(model, (μ=μ,logσ=log(σ),ξ=ξ))
+    return PWMEstimator{UnivariateGEVModel}(model, (μ=μ,logσ=log(σ)))
 end
