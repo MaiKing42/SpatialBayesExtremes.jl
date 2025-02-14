@@ -23,4 +23,5 @@ end
 
 
 include(joinpath("UnivariateExtremeValueModels","univariategevmodel.jl"))
+include(joinpath("UnivariateExtremeValueModels","univariategumbelmodel.jl"))
 include(joinpath("UnivariateExtremeValueModels","univariategpdmodel.jl"))
