@@ -9,7 +9,7 @@ function get_parameters(model::ExtremeValueModel) end
 
 function get_distribution(model::ExtremeValueModel,θ::NamedTuple) end
 
-loglikelihood(model::ExtremeValueModel,θ::NamedTuple) = sum(logpdf.(get_distribution(model,θ), model.data))
+loglikelihood(model::ExtremeValueModel,θ::NamedTuple) = sum(logpdf(get_distribution(model,θ), model.data))
 
 likelihood(model::ExtremeValueModel,θ::NamedTuple) = exp(loglikelihood(model,θ))
 
