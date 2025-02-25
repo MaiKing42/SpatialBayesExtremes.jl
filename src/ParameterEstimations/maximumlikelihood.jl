@@ -1,13 +1,13 @@
 function getInitialValue(model::ExtremeValueModel, estimator::Type{MaximumLikelihoodEstimator}) end
 
 function fit(model::ExtremeValueModel, initialvalue::NamedTuple, estimator::Type{MaximumLikelihoodEstimator})
-    flatInitialValues, unflatten = flatten(initialvalue)
+    flatInitialValues, unflatten = value_flatten(initialvalue)
 
     objective(θ) = -loglikelihood(model, unflatten(θ))
 
     function derivative(θ)
         derivativeTuple = -loglikelihoodDerivative(model, unflatten(θ))
-        return flatten(derivativeTuple)[1]
+        return value_flatten(derivativeTuple)[1]
     end
 
     opt = optimize(objective, derivative, flatInitialValues, BFGS(linesearch = LineSearches.BackTracking()))
