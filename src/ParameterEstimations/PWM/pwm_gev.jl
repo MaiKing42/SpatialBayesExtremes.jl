@@ -1,8 +1,8 @@
-fitgevPWM(data::Vector{<:Real}) = fit(UnivariateGEVModel(data), typeof(PWMEsstimator))
+fitgevPWM(data::Vector{<:Real}) = fit(UnivariateGEVModel(data), PWMEsstimator)
 
-fitgevPWM(data::DataFrame, column::Symbol) = fit(UnivariateGEVModel(data[:,column]), typeof(PWMEstimator))
+fitgevPWM(data::DataFrame, column::Symbol) = fit(UnivariateGEVModel(data[:,column]), PWMEstimator)
 
-function fit(model::UnivariateGEVModel, estimator::typeof(PWMEstimator))
+function fit(model::UnivariateGEVModel, estimator::Type{PWMEstimator})
     data = model.data
 
     β_0 = pwm(data,1,0,0)

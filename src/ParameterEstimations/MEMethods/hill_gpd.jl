@@ -1,8 +1,8 @@
-fitgpdHill(data::Vector{<:Real}) = fit(UnivariateGPDModel(data), typeof(PWMEstimator))
+fitgpdHill(data::Vector{<:Real}) = fit(UnivariateGPDModel(data), HillEstimator)
 
-fitgpdHill(data::DataFrame, column::Symbol) = fit(UnivariateGPDModel(data[:,column]), typeof(PWMEstimator))
+fitgpdHill(data::DataFrame, column::Symbol) = fit(UnivariateGPDModel(data[:,column]), HillEstimator)
 
-function fit(model::UnivariateGPDModel, estimator::typeof(HillEstimator))
+function fit(model::UnivariateGPDModel, estimator::Type{HillEstimator})
     data = sort(model.data)
     ξ = empiricalMeanExcess(log.(data),log(data[1]))
     objective = σ -> -loglikelihood(model, (σ=σ[1],ξ=ξ))

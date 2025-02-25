@@ -1,8 +1,8 @@
-fitgumbelPWM(data::Vector{<:Real}) = fit(UnivariateGumbelModel(data), typeof(PWMEsstimator))
+fitgumbelPWM(data::Vector{<:Real}) = fit(UnivariateGumbelModel(data), PWMEsstimator)
 
-fitgumbelPWM(data::DataFrame, column::Symbol) = fit(UnivariateGumbelModel(data[:,column]), typeof(PWMEstimator))
+fitgumbelPWM(data::DataFrame, column::Symbol) = fit(UnivariateGumbelModel(data[:,column]), PWMEstimator)
 
-function fit(model::UnivariateGumbelModel, estimator::typeof(PWMEstimator))
+function fit(model::UnivariateGumbelModel, estimator::Type{PWMEstimator})
     data = model.data
 
     β_0 = pwm(y,1,0,0)
