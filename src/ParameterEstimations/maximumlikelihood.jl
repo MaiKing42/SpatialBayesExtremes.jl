@@ -1,7 +1,7 @@
-function getInitialValues(model::ExtremeValueModel, estimator::Type{MaximumLikelihoodEstimator}) end
+function getInitialValue(model::ExtremeValueModel, estimator::Type{MaximumLikelihoodEstimator}) end
 
-function fit(model::ExtremeValueModel, initialvalues::NamedTuple, estimator::Type{MaximumLikelihoodEstimator})
-    flatInitialValues, unflatten = flatten(initialvalues)
+function fit(model::ExtremeValueModel, initialvalue::NamedTuple, estimator::Type{MaximumLikelihoodEstimator})
+    flatInitialValues, unflatten = flatten(initialvalue)
 
     objective(θ) = -loglikelihood(model, unflatten(θ))
 
@@ -15,4 +15,4 @@ function fit(model::ExtremeValueModel, initialvalues::NamedTuple, estimator::Typ
     return MaximumLikelihoodEstimator(model, unflatten(opt.minimizer))
 end
 
-fit(model::ExtremeValueModel, estimator::Type{MaximumLikelihoodEstimator}) = fit(model, getInitialValues(model, estimator), estimator)
+fit(model::ExtremeValueModel, estimator::Type{MaximumLikelihoodEstimator}) = fit(model, getInitialValue(model, estimator), estimator)
