@@ -1,4 +1,4 @@
-function getInitialValue(model::ExtremeValueModel, estimator::Type{MaximumLikelihoodEstimator})
+function getInitialValue(model::UnivariateGEVModel, estimator::Type{MaximumLikelihoodEstimator})
     initialGuess = fitgevPWM(model.data).θ̂
     flatInitialGuess, unflatten = value_flatten(initialGuess)
     objective(θ::NamedTuple) = sum(-min.(0, 1.0 + θ.ξ*(model.data - θ.μ)/exp(θ.σ) + exp(θ.λ)))
