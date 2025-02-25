@@ -1,6 +1,6 @@
-fitgpd_pwm(data::Vector{<:Real}) = fit(UnivariateGPDModel(data), typeof(PWMEstimator))
+fitgpdPWM(data::Vector{<:Real}) = fit(UnivariateGPDModel(data), typeof(PWMEstimator))
 
-fitgpd_pwm(data::DataFrame, column::Symbol) = fit(UnivariateGPDModel(data[:,column]), typeof(PWMEstimator))
+fitgpdPWM(data::DataFrame, column::Symbol) = fit(UnivariateGPDModel(data[:,column]), typeof(PWMEstimator))
 
 function fit(model::UnivariateGPDModel,estimator::typeof(PWMEstimator))
     data = model.data

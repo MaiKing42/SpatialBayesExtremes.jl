@@ -1,4 +1,4 @@
-function score_function(dist::GeneralizedExtremeValue,data::Float64)
+function scoreFunction(dist::GeneralizedExtremeValue,data::Float64)
     μ = dist.μ
     σ = dist.σ
     ξ = dist.ξ
@@ -22,7 +22,7 @@ function score_function(dist::GeneralizedExtremeValue,data::Float64)
     return (μ=∂μ,σ=∂σ,ξ=∂ξ)
 end
 
-function score_function(dist::Gumbel,data::Float64)
+function scoreFunction(dist::Gumbel,data::Float64)
     μ = dist.μ
     σ = dist.σ
     z = (data - μ)/σ
@@ -32,7 +32,7 @@ function score_function(dist::Gumbel,data::Float64)
     return (μ=∂μ,σ=∂σ)
 end
 
-function score_function(dist::GeneralizedPareto,data::Float64)
+function scoreFunction(dist::GeneralizedPareto,data::Float64)
     μ = dist.μ
     σ = dist.σ
     ξ = dist.ξ

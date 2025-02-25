@@ -12,10 +12,10 @@ export
     UnivariateGEVModel,
     UnivariateGPDModel,
     getModelParameters,
-    get_distribution,
+    getDistribution,
     loglikelihood,
     likelihood,
-    loglikelihood_derivative
+    loglikelihoodDerivative
 
 include("utils.jl")
 include("extremevaluemodel.jl")

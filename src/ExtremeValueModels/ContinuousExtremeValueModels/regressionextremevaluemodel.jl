@@ -13,14 +13,14 @@ function evaluateJacobianDistributionParameters(model::RegressionExtremeValueMod
 
 function evaluateJacobianDistributionParameters(model::RegressionExtremeValueModel, covariates::DataFrame, θ::NamedTuple) end
 
-get_distribution(model::RegressionExtremeValueModel{D}, θ::NamedTuple) where {D} = D.(evaluateDistributionParameters(model, θ))
+getDistribution(model::RegressionExtremeValueModel{D}, θ::NamedTuple) where {D} = D.(evaluateDistributionParameters(model, θ))
 
-get_distribution(model::RegressionExtremeValueModel{D}, covariates::DataFrame, θ::NamedTuple) where {D} = D.(evaluateDistributionParameters(model, covariates, θ))
+getDistribution(model::RegressionExtremeValueModel{D}, covariates::DataFrame, θ::NamedTuple) where {D} = D.(evaluateDistributionParameters(model, covariates, θ))
 
-function loglikelihood_derivative(model::RegressionExtremeValueModel, θ::NamedTuple)
+function loglikelihoodDerivative(model::RegressionExtremeValueModel, θ::NamedTuple)
     param_names = getModelParameters(model)
-    dists = get_distribution(model, θ)
-    scores = score_function.(dists, model.data)
+    dists = getDistribution(model, θ)
+    scores = scoreFunction.(dists, model.data)
     jacobians = evaluateJacobian_parameterModels(model, θ)
     return NamedTuple(k=>(map(x->x[k],scores)'*jacobians[k])' for k in param_names)
 end
