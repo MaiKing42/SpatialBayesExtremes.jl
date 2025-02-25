@@ -8,7 +8,7 @@ struct RegressionGEVModel<:RegressionExtremeValueModel{GeneralizedExtremeValue}
     shapeMatrix::Matrix{Float64}
 end
 
-get_parameters(model::RegressionGEVModel) = (:μ, :σ, :ξ)
+getModelParameters(model::RegressionGEVModel) = (:μ, :σ, :ξ)
 
 function evaluateLocationParameter(model::RegressionGEVModel, μ::Vector{Float64})
     return model.locationMatrix * μ
@@ -18,11 +18,11 @@ function evaluateLocationParameter(model::RegressionGEVModel, covariates::DataFr
     return modelmatrix(model.locationFormula.rhs, covariates) * μ
 end
 
-function evaluateJacobian_locationModel(model::RegressionGEVModel, μ::Vector{Float64})
+function evaluateJacobianLocationParameter(model::RegressionGEVModel, μ::Vector{Float64})
     return model.locationMatrix
 end
 
-function evaluateJacobian_locationModel(model::RegressionGEVModel, covariates::DataFrame, μ::Vector{Float64})
+function evaluateJacobianLocationParameter(model::RegressionGEVModel, covariates::DataFrame, μ::Vector{Float64})
     return modelmatrix(model.locationFormula.rhs, covariates)
 end
 
@@ -34,11 +34,11 @@ function evaluateScaleParameter(model::RegressionGEVModel, covariates::DataFrame
     return exp.(modelmatrix(model.scaleFormula.rhs, covariates) * σ)
 end
 
-function evaluateJacobian_scaleModel(model::RegressionGEVModel, σ::Vector{Float64})
+function evaluateJacobianScaleParameter(model::RegressionGEVModel, σ::Vector{Float64})
     return evaluateScaleParameter(model, σ).*model.scaleMatrix
 end
 
-function evaluateJacobian_scaleModel(model::RegressionGEVModel, covariates::DataFrame, σ::Vector{Float64})
+function evaluateJacobianScaleParameter(model::RegressionGEVModel, covariates::DataFrame, σ::Vector{Float64})
     return evaluateScaleParameter(model, covariates, σ).*modelmatrix(model.scaleFormula.rhs, covariates)
 end
 
@@ -50,26 +50,26 @@ function evaluateShapeParameter(model::RegressionGEVModel, covariates::DataFrame
     return modelmatrix(model.shapeFormula.rhs, covariates) * ξ
 end
 
-function evaluateJacobian_shapeModel(model::RegressionGEVModel, ξ::Vector{Float64})
+function evaluateJacobianShapeParameter(model::RegressionGEVModel, ξ::Vector{Float64})
     return model.shapeMatrix
 end
 
-function evaluateJacobian_shapeModel(model::RegressionGEVModel, covariates::DataFrame, ξ::Vector{Float64})
+function evaluateJacobianShapeParameter(model::RegressionGEVModel, covariates::DataFrame, ξ::Vector{Float64})
     return modelmatrix(model.shapeFormula.rhs, covariates)
 end
 
-_evaluateParameters(model::RegressionGEVModel; μ, σ, ξ) = (μ = evaluateLocationParameter(model, μ),σ =  evaluateScaleParameter(model, σ),ξ = evaluateShapeParameter(model, ξ))
+_evaluateDistributionParameters(model::RegressionGEVModel; μ, σ, ξ) = (μ = evaluateLocationParameter(model, μ),σ =  evaluateScaleParameter(model, σ),ξ = evaluateShapeParameter(model, ξ))
 
-evaluateParameters(model::RegressionGEVModel, θ::NamedTuple) = _evaluateParameters(model;θ...)
+evaluateDistributionParameters(model::RegressionGEVModel, θ::NamedTuple) = _evaluateDistributionParameters(model;θ...)
 
-_evaluateParameters(model::RegressionGEVModel, covariates::DataFrame; μ, σ, ξ) = (μ = evaluateLocationParameter(model, covariates, μ),σ =  evaluateScaleParameter(model, covariates, σ),ξ = evaluateShapeParameter(model, covariates, ξ))
+_evaluateDistributionParameters(model::RegressionGEVModel, covariates::DataFrame; μ, σ, ξ) = (μ = evaluateLocationParameter(model, covariates, μ),σ =  evaluateScaleParameter(model, covariates, σ),ξ = evaluateShapeParameter(model, covariates, ξ))
 
-evaluateParameters(model::RegressionGEVModel, covariates::DataFrame, θ::NamedTuple) = _evaluateParameters(model, covariates;θ...)
+evaluateDistributionParameters(model::RegressionGEVModel, covariates::DataFrame, θ::NamedTuple) = _evaluateDistributionParameters(model, covariates;θ...)
 
-_evaluateJacobian_parameterModels(model::RegressionGEVModel; μ, σ, ξ) = (μ = evaluateJacobian_locationModel(model, μ),σ =  evaluateJacobian_scaleModel(model, σ),ξ = evaluateJacobian_shapeModel(model, ξ))
+_evaluateJacobianDistributionParameters(model::RegressionGEVModel; μ, σ, ξ) = (μ = evaluateJacobianLocationParamater(model, μ),σ = evaluateJacobianScaleParameter(model, σ), ξ = evaluateJacobianShapeParameter(model, ξ))
 
-evaluateJacobian_parameterModels(model::RegressionGEVModel, θ::NamedTuple) = _evaluateJacobian_parameterModels(model;θ...)
+evaluateJacobianDistributionParameters(model::RegressionGEVModel, θ::NamedTuple) = _evaluateJacobianDistributionParameters(model; θ...)
 
-_evaluateJacobian_parameterModels(model::RegressionGEVModel, covariates::DataFrame; μ, σ, ξ) = (μ = evaluateJacobian_locationModel(model, covariates, μ),σ =  evaluateJacobian_scaleModel(model, covariates, σ),ξ = evaluateJacobian_shapeModel(model, covariates, ξ))
+_evaluateJacobianDistributionParameters(model::RegressionGEVModel, covariates::DataFrame; μ, σ, ξ) = (μ = evaluateJacobianLocationParameter(model, covariates, μ), σ =  evaluateJacobianScaleParameter(model, covariates, σ), ξ = evaluateJacobianShapeParameter(model, covariates, ξ))
 
-evaluateJacobian_parameterModels(model::RegressionGEVModel, covariates::DataFrame, θ::NamedTuple) = _evaluateJacobian_parameterModels(model, covariates;θ...)
+evaluateJacobianDistributionParameters(model::RegressionGEVModel, covariates::DataFrame, θ::NamedTuple) = _evaluateJacobianDistributionParameters(model, covariates; θ...)
