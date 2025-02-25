@@ -3,7 +3,7 @@ struct UnivariateGPDModel <: UnivariateExtremeValueModel{GeneralizedPareto}
     threshold::Float64
 end
 
-get_parameters(model::UnivariateGPDModel) = (:σ,:ξ)
+getModelParameters(model::UnivariateGPDModel) = (:σ,:ξ)
 
 evaluateScaleParameter(model::UnivariateGPDModel, σ::Float64) = exp(σ)
 
@@ -13,12 +13,10 @@ evaluateShapeParameter(model::UnivariateGPDModel, ξ::Float64) = ξ
 
 evaluateDerivativeShapeParameter(model::UnivariateGPDModel, ξ::Float64) = 1.0
 
-_evaluateParameters(model::UnivariateGPDModel; σ, ξ) = (σ =  evaluateScaleParameter(model, σ),ξ = evaluateShapeParameter(model, ξ))
+_evaluateDistributionParameters(model::UnivariateGPDModel; σ, ξ) = (μ = model.threshold, σ = evaluateScaleParameter(model, σ), ξ = evaluateShapeParameter(model, ξ))
 
-evaluateParameters(model::UnivariateGPDModel, θ::NamedTuple) = _evaluateParameters(model; θ...)
+evaluateDistributionParameters(model::UnivariateGPDModel, θ::NamedTuple) = _evaluateDistributionParameters(model; θ...)
 
-_evaluateDerivativeParameters(model::UnivariateGPDModel; σ, ξ) = (σ =  evaluateDerivativeScaleParameter(model, σ),ξ = evaluateDerivativeShapeParameter(model, ξ))
+_evaluateDerivativeDistributionParameters(model::UnivariateGPDModel; σ, ξ) = (μ = 0, σ = evaluateDerivativeScaleParameter(model, σ), ξ = evaluateDerivativeShapeParameter(model, ξ))
 
-evaluateDerivativeParameters(model::UnivariateGPDModel, θ::NamedTuple) = _evaluateDerivativeParameters(model; θ...)
-
-loglikelihood(model::UnivariateGPDModel, θ::NamedTuple) = logpdf(get_distribution(model,θ), model.data .- model.threshold)
+evaluateDerivativeDistributionParameters(model::UnivariateGPDModel, θ::NamedTuple) = _evaluateDerivativeDistributionParameters(model; θ...)

@@ -5,7 +5,7 @@ Abstract type for extreme value models.
 """
 abstract type ExtremeValueModel end
 
-function get_parameters(model::ExtremeValueModel) end
+function getModelParameters(model::ExtremeValueModel) end
 
 function get_distribution(model::ExtremeValueModel,θ::NamedTuple) end
 

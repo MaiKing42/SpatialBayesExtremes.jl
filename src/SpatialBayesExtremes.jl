@@ -11,7 +11,7 @@ export
     UnivariateExtremeValueModel,
     UnivariateGEVModel,
     UnivariateGPDModel,
-    get_parameters,
+    getModelParameters,
     get_distribution,
     loglikelihood,
     likelihood,

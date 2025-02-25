@@ -5,19 +5,19 @@ Abstract type for univariate extreme value models.
 """
 abstract type UnivariateExtremeValueModel{D<:UnivariateDistribution} <: DiscreteExtremeValueModel end
 
-function evaluateParameters(model::UnivariateExtremeValueModel,θ::NamedTuple) end
+function evaluateDistributionParameters(model::UnivariateExtremeValueModel,θ::NamedTuple) end
 
-function evaluateDerivativeParameters(model::UnivariateExtremeValueModel,θ::NamedTuple) end
+function evaluateDerivativeDistributionParameters(model::UnivariateExtremeValueModel,θ::NamedTuple) end
 
 function get_distribution(model::UnivariateExtremeValueModel{D},θ::NamedTuple) where {D}
-    return D(evaluate_parameters(model,θ)...)
+    return D(evaluateDistributionParameters(model,θ)...)
 end
 
 function loglikelihood_derivative(model::UnivariateExtremeValueModel{D},θ::NamedTuple) where {D}
-    params = get_parameters(model)
+    params = getModelParameters(model)
     dist = get_distribution(model,θ)
     scores = score_function(dist,model.data)
-    derivatives = evaluateDerivativeParameters(model,θ)
+    derivatives = evaluateDerivativeDistributionParameters(model,θ)
     return NamedTuple(k=>sum(map(x->x[k],scores))*derivatives[k] for k in params)
 end
 
