@@ -1,0 +1,1 @@
+function getInitialValue(model::UnivariateGPDModel, estimator::Type{MaximumLikelihoodEstimator}) end

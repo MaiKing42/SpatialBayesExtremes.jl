@@ -1,0 +1,1 @@
+function getInitialValue(model::RegressionGPDModel, estimator::Type{MaximumLikelihoodEstimator}) end

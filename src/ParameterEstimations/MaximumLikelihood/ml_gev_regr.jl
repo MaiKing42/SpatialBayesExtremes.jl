@@ -1,0 +1,1 @@
+function getInitialValue(model::RegressionGEVModel, estimator::Type{MaximumLikelihoodEstimator}) end
