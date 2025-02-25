@@ -16,3 +16,8 @@ function fit(model::ExtremeValueModel, initialvalue::NamedTuple, estimator::Type
 end
 
 fit(model::ExtremeValueModel, estimator::Type{MaximumLikelihoodEstimator}) = fit(model, getInitialValue(model, estimator), estimator)
+
+include(joinpath("MaximumLikelihood", "ml_gev_univ.jl"))
+include(joinpath("MaximumLikelihood", "ml_gev_regr.jl"))
+include(joinpath("MaximumLikelihood", "ml_gpd_univ.jl"))
+include(joinpath("MaximumLikelihood", "ml_gpd_regr.jl"))
