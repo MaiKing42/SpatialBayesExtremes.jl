@@ -5,6 +5,15 @@ struct RegressionGPDModel<:RegressionExtremeValueModel{GeneralizedPareto}
     shapeTerm::FormulaTerm
     scaleMatrix::Matrix{Float64}
     shapeMatrix::Matrix{Float64}
+
+    RegressionGPDModel(data::Vector{<:Real}, covariates::DataFrame, threshold::Real, scaleFormula::FormulaTerm, shapeFormula::FormulaTerm) = begin
+        length(data) == nrow(covariates) || throw(ArgumentError("The length of the data and the number of rows in the covariates must be the same"))
+        scaleTerm = apply_schema(scaleFormula, covariates)
+        shapeTerm = apply_schema(shapeFormula, covariates)
+        scaleMatrix = modelcols(scaleFormula.rhs, covariates)
+        shapeMatrix = modelcols(shapeFormula.rhs, covariates)
+        new(data, threshold, scaleFormula, shapeFormula, scaleMatrix, shapeMatrix)
+    end
 end
 
 getModelParameters(model::RegressionGPDModel) = (:σ, :ξ)
