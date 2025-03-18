@@ -1,6 +1,6 @@
-fitGEVML(data::Vector{<:Real}) = fit(UnivariateGEVModel(data), MaximumLikelihoodEstimator)
+fitgevML(data::Vector{<:Real}) = fit(UnivariateGEVModel(data), MaximumLikelihoodEstimator)
 
-fitGEVML(data::Vector{<:Real}, initialvalue::NamedTuple) = fit(UnivariateGEVModel(data), initialvalue, MaximumLikelihoodEstimator)
+fitgevML(data::Vector{<:Real}, initialvalue::NamedTuple) = fit(UnivariateGEVModel(data), initialvalue, MaximumLikelihoodEstimator)
 
 function getInitialValue(model::UnivariateGEVModel, estimator::Type{MaximumLikelihoodEstimator})
     initialGuess = fitgevPWM(model.data).θ̂
