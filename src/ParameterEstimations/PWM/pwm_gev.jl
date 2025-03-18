@@ -14,5 +14,5 @@ function fit(model::UnivariateGEVModel, estimator::Type{PWMEstimator})
     μ = β_0 - σ*(1-SpecialFunctions.gamma(1+k))/k
     ξ = -k
 
-    return PWMEstimator{UnivariateGEVModel}(model, (μ=μ,logσ=log(σ),ξ=ξ))
+    return PWMEstimator{UnivariateGEVModel}(model, (μ=μ,σ=log(σ),ξ=ξ))
 end

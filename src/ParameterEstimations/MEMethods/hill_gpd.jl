@@ -9,5 +9,5 @@ function fit(model::UnivariateGPDModel, estimator::Type{HillEstimator})
     derivative = σ -> [-loglikelihoodDerivative(model, (σ=σ[1],ξ=ξ)).logσ,]
     logσ = optimize(objective, derivative, [0.0,], GradientDescent()).minimizer[1]
 
-    return HillEstimator{UnivariateGPDModel}(UnivariateGPDModel(data), (logσ=logσ ,ξ=ξ))
+    return HillEstimator{UnivariateGPDModel}(UnivariateGPDModel(data), (σ=logσ ,ξ=ξ))
 end

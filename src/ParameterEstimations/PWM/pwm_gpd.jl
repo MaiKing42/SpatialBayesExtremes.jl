@@ -13,5 +13,5 @@ function fit(model::UnivariateGPDModel, estimator::Type{PWMEstimator})
 
     ξ = - k
     
-    return PWMEstimator{UnivariateGPDModel}(model, (logσ=log(σ),ξ=ξ))
+    return PWMEstimator{UnivariateGPDModel}(model, (σ=log(σ),ξ=ξ))
 end
