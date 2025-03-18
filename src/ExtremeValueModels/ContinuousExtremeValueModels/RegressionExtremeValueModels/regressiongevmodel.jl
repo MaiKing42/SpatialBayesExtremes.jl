@@ -6,6 +6,17 @@ struct RegressionGEVModel<:RegressionExtremeValueModel{GeneralizedExtremeValue}
     locationMatrix::Matrix{Float64}
     scaleMatrix::Matrix{Float64}
     shapeMatrix::Matrix{Float64}
+
+    RegressionGEVModel(data::Vector{<:Real}, covariates::DataFrame, locationFormula::FormulaTerm, scaleFormula::FormulaTerm, shapeFormula::FormulaTerm) = begin
+        length(data) == nrow(covariates) || throw(ArgumentError("The length of the data and the number of rows in the covariates must be the same"))
+        locationTerm = apply_schema(locationFormula, covariates)
+        scaleTerm = apply_schema(scaleFormula, covariates)
+        shapeTerm = apply_schema(shapeFormula, covariates)
+        locationMatrix = modelcols(locationFormula.rhs, covariates)
+        scaleMatrix = modelcols(scaleFormula.rhs, covariates)
+        shapeMatrix = modelcols(shapeFormula.rhs, covariates)
+        new(data, locationFormula, scaleFormula, shapeFormula, locationMatrix, scaleMatrix, shapeMatrix)
+    end
 end
 
 getModelParameters(model::RegressionGEVModel) = (:μ, :σ, :ξ)
