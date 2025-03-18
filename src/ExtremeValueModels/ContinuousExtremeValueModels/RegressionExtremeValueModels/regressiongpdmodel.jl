@@ -1,8 +1,8 @@
 struct RegressionGPDModel<:RegressionExtremeValueModel{GeneralizedPareto}
     data::Vector{Float64}
     threshold::Float64
-    scaleFormula::FormulaTerm
-    shapeFormula::FormulaTerm
+    scaleTerm::FormulaTerm
+    shapeTerm::FormulaTerm
     scaleMatrix::Matrix{Float64}
     shapeMatrix::Matrix{Float64}
 end
@@ -14,7 +14,8 @@ function evaluateScaleParameter(model::RegressionGPDModel, σ::Vector{Float64})
 end
 
 function evaluateScaleParameter(model::RegressionGPDModel, covariates::DataFrame, σ::Vector{Float64})
-    return exp.(modelmatrix(model.scaleFormula.rhs, covariates) * σ)
+    scaleMatrix = modelcols(model.scaleTerm.rhs, covariates)
+    return exp.(scaleMatrix * σ)
 end
 
 function evaluateJacobianScaleParameter(model::RegressionGPDModel, σ::Vector{Float64})
@@ -22,7 +23,8 @@ function evaluateJacobianScaleParameter(model::RegressionGPDModel, σ::Vector{Fl
 end
 
 function evaluateJacobianScaleParameter(model::RegressionGPDModel, covariates::DataFrame, σ::Vector{Float64})
-    return evaluateScaleParameter(model, covariates, σ).*modelmatrix(model.scaleFormula.rhs, covariates)
+    scaleMatrix = modelcols(model.scaleTerm.rhs, covariates)
+    return evaluateScaleParameter(model, covariates, σ).*scaleMatrix
 end
 
 function evaluateShapeParameter(model::RegressionGPDModel, ξ::Vector{Float64})
@@ -30,7 +32,8 @@ function evaluateShapeParameter(model::RegressionGPDModel, ξ::Vector{Float64})
 end
 
 function evaluateShapeParameter(model::RegressionGPDModel, covariates::DataFrame, ξ::Vector{Float64})
-    return modelmatrix(model.shapeFormula.rhs, covariates) * ξ
+    shapeMatrix = modelcols(model.shapeTerm.rhs, covariates)
+    return shapeMatrix * ξ
 end
 
 function evaluateJacobianShapeParameter(model::RegressionGPDModel, ξ::Vector{Float64})
@@ -38,7 +41,8 @@ function evaluateJacobianShapeParameter(model::RegressionGPDModel, ξ::Vector{Fl
 end
 
 function evaluateJacobianShapeParameter(model::RegressionGPDModel, covariates::DataFrame, ξ::Vector{Float64})
-    return modelmatrix(model.shapeFormula.rhs, covariates)
+    shapeMatrix = modelcols(model.shapeTerm.rhs, covariates)
+    return shapeMatrix
 end
 
 _evaluateDistributionParameters(model::RegressionGPDModel; σ, ξ) = (μ = threshold*ones(length(data)), σ = evaluateScaleParameter(model, σ), ξ = evaluateShapeParameter(model, ξ))
