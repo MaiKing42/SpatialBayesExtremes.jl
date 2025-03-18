@@ -6,7 +6,7 @@ fitSpatialgpdML(data::Vector{<:Real}, covariates::DataFrame, scaleFormula::Formu
 
 fitSpatialgpdML(data::DataFrame, column::Symbol, scaleFormula::FormulaTerm, shapeFormula::FormulaTerm, initialvalue::NamedTuple) = fit(RegressionGPDModel(data[:,column], data, scaleFormula, shapeFormula), initialvalue, MaximumLikelihoodEstimator)
 
-function getInitialValue(model::SpatialGPDModel, estimator::Type{MaximumLikelihoodEstimator})
+function getInitialValue(model::RegressionGPDModel, estimator::Type{MaximumLikelihoodEstimator})
     univariateEstimate = fit(UnivariateGPDModel(model.data), estimator)
     initialσ = zeros(size(model.scaleMatrix,1))
     initialσ[findfirst(==("(Intercept)"),coefnames(model.scaleTerm.rhs))] = univariateEstimate.θ̂.σ
