@@ -1,4 +1,10 @@
-fitSpatialgevML(data::Vector{<:Real})
+fitSpatialgevML(data::Vector{<:Real}, covariates::DataFrame, locationFormula::FormulaTerm, scaleFormula::FormulaTerm, shapeFormula::FormulaTerm) = fit(RegressionGEVModel(data, covariates, locationFormula, scaleFormula, shapeFormula), MaximumLikelihoodEstimator)
+
+fitSpatialgevML(data::DataFrame, column::Symbol, covariates::DataFrame, locationFormula::FormulaTerm, scaleFormula::FormulaTerm, shapeFormula::FormulaTerm) = fit(RegressionGEVModel(data[:,column], covariates, locationFormula, scaleFormula, shapeFormula), MaximumLikelihoodEstimator)
+
+fitSpatialgevML(data::Vector{<:Real}, covariates::DataFrame, locationFormula::FormulaTerm, scaleFormula::FormulaTerm, shapeFormula::FormulaTerm, initialvalue::NamedTuple) = fit(RegressionGEVModel(data, covariates, locationFormula, scaleFormula, shapeFormula), initialvalue, MaximumLikelihoodEstimator)
+
+fitSpatialgevML(data::DataFrame, column::Symbol, covariates::DataFrame, locationFormula::FormulaTerm, scaleFormula::FormulaTerm, shapeFormula::FormulaTerm, initialvalue::NamedTuple) = fit(RegressionGEVModel(data[:,column], covariates, locationFormula, scaleFormula, shapeFormula), initialvalue, MaximumLikelihoodEstimator)
 
 function getInitialValue(model::RegressionGEVModel, estimator::Type{MaximumLikelihoodEstimator})
     univariateEstimate = fit(UnivariateGEVModel(model.data), estimator)
