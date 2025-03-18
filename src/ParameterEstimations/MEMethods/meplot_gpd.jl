@@ -2,7 +2,7 @@ fitgpdMeplot(data::Vector{<:Real}) = fit(UnivariateGPDModel(data), MeanExcessEst
 
 fitgpdMeplot(data::DataFrame, column::Symbol) = fit(UnivariateGPDModel(data[:,column]), MeanExcessEstimator)
 
-function fit(model::UnivariateGPDModel, estimator::Type{PWMEstimator})
+function fit(model::UnivariateGPDModel, estimator::Type{MeanExcessEstimator})
     data = model.data
     mean_excess_data = empiricalMeanExcessPlot(data)
     dataframe = DataFrame(X = data, Y = mean_excess_data)
