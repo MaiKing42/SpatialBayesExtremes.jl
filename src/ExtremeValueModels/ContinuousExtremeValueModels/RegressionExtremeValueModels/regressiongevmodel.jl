@@ -12,10 +12,10 @@ struct RegressionGEVModel<:RegressionExtremeValueModel{GeneralizedExtremeValue}
         locationTerm = apply_schema(locationFormula, covariates)
         scaleTerm = apply_schema(scaleFormula, covariates)
         shapeTerm = apply_schema(shapeFormula, covariates)
-        locationMatrix = modelcols(locationFormula.rhs, covariates)
-        scaleMatrix = modelcols(scaleFormula.rhs, covariates)
-        shapeMatrix = modelcols(shapeFormula.rhs, covariates)
-        new(data, locationFormula, scaleFormula, shapeFormula, locationMatrix, scaleMatrix, shapeMatrix)
+        locationMatrix = modelcols(locationTerm.rhs, covariates)
+        scaleMatrix = modelcols(scaleTerm.rhs, covariates)
+        shapeMatrix = modelcols(shapeTerm.rhs, covariates)
+        new(data, locationTerm, scaleTerm, shapeTerm, locationMatrix, scaleMatrix, shapeMatrix)
     end
 end
 
