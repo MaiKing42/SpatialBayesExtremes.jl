@@ -1,6 +1,8 @@
 function getInitialValue(model::ExtremeValueModel, estimator::Type{MaximumLikelihoodEstimator}) end
 
 function fit(model::ExtremeValueModel, initialvalue::NamedTuple, estimator::Type{MaximumLikelihoodEstimator})
+    all(insupport.(getDistribution(model, initialvalue), model.data)) || throw(ArgumentError("Data is not in the support of the initial distribution"))
+
     flatInitialValues, unflatten = value_flatten(initialvalue)
 
     objective(θ) = -loglikelihood(model, unflatten(θ))
@@ -12,7 +14,9 @@ function fit(model::ExtremeValueModel, initialvalue::NamedTuple, estimator::Type
 
     opt = optimize(objective, derivative, flatInitialValues, BFGS(linesearch = LineSearches.BackTracking()))
 
-    return MaximumLikelihoodEstimator(model, unflatten(opt.minimizer))
+    converged(opt) || warn("Optimization did not converge")
+
+    return MaximumLikelihoodEstimator(model, unflatten(opt.minimizer), converged(opt))
 end
 
 fit(model::ExtremeValueModel, estimator::Type{MaximumLikelihoodEstimator}) = fit(model, getInitialValue(model, estimator), estimator)
