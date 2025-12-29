@@ -23,7 +23,14 @@ export
     getDistribution,
     loglikelihood,
     likelihood,
-    loglikelihoodDerivative
+    loglikelihoodDerivative,
+    fitgumbelPWM,
+    fitgevPWM,
+    fitgpdPWM,
+    fitgpdMeplot,
+    fitgpdHill,
+    fitgevMLE,
+    fitgpdMLE
 
 include("utils.jl")
 include("extremevaluemodel.jl")
