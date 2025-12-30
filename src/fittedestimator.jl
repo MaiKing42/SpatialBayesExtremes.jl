@@ -1,3 +1,8 @@
+"""
+    FittedEstimator{M<:ExtremeValueModel}
+
+An abstract type for fitted estimators of extreme value models.
+"""
 abstract type FittedEstimator{M<:ExtremeValueModel} end
 
 include(joinpath("FittedEstimators","pwmestimator.jl"))

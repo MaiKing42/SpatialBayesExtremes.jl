@@ -17,9 +17,28 @@ SpatialBayesExtremes.likelihood
 SpatialBayesExtremes.loglikelihood
 ```
 
-Currently, we distinguish between two subtypes of `ExtremeValueModel`, depending on whether the model includes covariates and allows for exrapolation beyond the sample covariates ([continuous](@ref continuous)) or not ([discrete](@ref discrete)).
+Currently, we distinguish between two subtypes of `ExtremeValueModel`, depending on whether the model includes covariates and allows for extrapolation beyond the sample covariates ([continuous](@ref continuous)) or not ([discrete](@ref discrete)).
 
 ```julia
 abstract type DiscreteExtremeValueModel <: ExtremeValueModel end
 abstract type ContinuousExtremeValueModel <: ExtremeValueModel end
 ```
+
+## Fitted Estimators
+
+The fitted estimator yields the connection between statistical model and the estimation method generating the parameter estimate.
+
+### FittedEstimator
+
+Any type of object linking a `ExtremeValueModel` to a estimation method and the parameter estimates is a subtype of the abstract type `FittedEstimator`.
+
+```julia
+abstract type FittedEstimator{M<:ExtremeValueModel} end
+```
+
+It has one parameter that specifies the statistical model it is the parameter estimates correspond to.
+
+```@docs
+SpatialBayesExtremes.FittedEstimator
+```
+
