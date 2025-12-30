@@ -20,8 +20,4 @@ evaluateDerivativeShapeParameter(model::UnivariateGEVModel, ξ::Float64) = 1.0
 
 _evaluateDistributionParameters(model::UnivariateGEVModel; μ, σ, ξ) = (μ = evaluateLocationParameter(model, μ),σ =  evaluateScaleParameter(model, σ),ξ = evaluateShapeParameter(model, ξ))
 
-evaluateDistributionParameters(model::UnivariateGEVModel, θ::NamedTuple) = _evaluateDistributionParameters(model; θ...)
-
 _evaluateDerivativeDistributionParameters(model::UnivariateGEVModel; μ, σ, ξ) = (μ = evaluateDerivativeLocationParameter(model, μ),σ =  evaluateDerivativeScaleParameter(model, σ),ξ = evaluateDerivativeShapeParameter(model, ξ))
-
-evaluateDerivativeDistributionParameters(model::UnivariateGEVModel, θ::NamedTuple) = _evaluateDerivativeDistributionParameters(model; θ...)

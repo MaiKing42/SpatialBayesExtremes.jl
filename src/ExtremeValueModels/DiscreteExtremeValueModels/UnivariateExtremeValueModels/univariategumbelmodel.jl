@@ -16,8 +16,4 @@ evaluateDerivativeScaleParameter(model::UnivariateGumbelModel, σ::Float64) = ex
 
 _evaluateDistributionParameters(model::UnivariateGumbelModel; μ, σ) = (μ = evaluateLocationParameter(model, μ),σ =  evaluateScaleParameter(model, σ))
 
-evaluateDistributionParameters(model::UnivariateGumbelModel, θ::NamedTuple) = _evaluateDistributionParameters(model; θ...)
-
 _evaluateDerivativeDistributionParameters(model::UnivariateGumbelModel; μ, σ) = (μ = evaluateDerivativeLocationParameter(model, μ),σ =  evaluateDerivativeScaleParameter(model, σ))
-
-evaluateDerivativeDistributionParameters(model::UnivariateGumbelModel, θ::NamedTuple) = _evaluateDerivativeDistributionParameters(model; θ...)

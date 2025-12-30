@@ -1,8 +1,9 @@
 abstract type UnivariateExtremeValueModel{D<:UnivariateDistribution} <: DiscreteExtremeValueModel end
 
-function evaluateDistributionParameters(model::UnivariateExtremeValueModel,θ::NamedTuple) end
+#get from model parameters to distribution parameters
+evaluateDistributionParameters(model::UnivariateExtremeValueModel,θ::NamedTuple) = _evaluateDistributionParameters(model;θ...)
 
-function evaluateDerivativeDistributionParameters(model::UnivariateExtremeValueModel,θ::NamedTuple) end
+evaluateDerivativeDistributionParameters(model::UnivariateExtremeValueModel,θ::NamedTuple) = _evaluateDerivativeDistributionParameters(model;θ...)
 
 function _getDistribution(model::UnivariateExtremeValueModel{D},θ::NamedTuple) where {D}
     return D(evaluateDistributionParameters(model,θ)...)
