@@ -1,0 +1,1 @@
+# [Discrete Extreme Value Models](@id discrete)

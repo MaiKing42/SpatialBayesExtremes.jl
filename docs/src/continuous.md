@@ -1,0 +1,1 @@
+# [Continuous Extreme Value Models](@id continuous)
