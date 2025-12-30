@@ -4,7 +4,7 @@ function evaluateDistributionParameters(model::UnivariateExtremeValueModel,θ::N
 
 function evaluateDerivativeDistributionParameters(model::UnivariateExtremeValueModel,θ::NamedTuple) end
 
-function getDistribution(model::UnivariateExtremeValueModel{D},θ::NamedTuple) where {D}
+function _getDistribution(model::UnivariateExtremeValueModel{D},θ::NamedTuple) where {D}
     return D(evaluateDistributionParameters(model,θ)...)
 end
 

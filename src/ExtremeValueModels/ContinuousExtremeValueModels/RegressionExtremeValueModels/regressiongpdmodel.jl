@@ -16,7 +16,9 @@ struct RegressionGPDModel<:RegressionExtremeValueModel{GeneralizedPareto}
     end
 end
 
-getModelParameters(model::RegressionGPDModel) = (:σ, :ξ)
+_getModelParameters(model::RegressionGPDModel) = (:σ, :ξ)
+
+_getModelData(model::RegressionGPDModel) = model.data
 
 function evaluateScaleParameter(model::RegressionGPDModel, σ::Vector{Float64})
     return exp.(model.scaleMatrix * σ)

@@ -8,9 +8,9 @@ function evaluateJacobianDistributionParameters(model::RegressionExtremeValueMod
 
 function evaluateJacobianDistributionParameters(model::RegressionExtremeValueModel, covariates::DataFrame, θ::NamedTuple) end
 
-getDistribution(model::RegressionExtremeValueModel{D}, θ::NamedTuple) where {D} = D.(evaluateDistributionParameters(model, θ))
+_getDistribution(model::RegressionExtremeValueModel{D}, θ::NamedTuple) where {D} = D.(evaluateDistributionParameters(model, θ))
 
-getDistribution(model::RegressionExtremeValueModel{D}, covariates::DataFrame, θ::NamedTuple) where {D} = D.(evaluateDistributionParameters(model, covariates, θ))
+_getDistribution(model::RegressionExtremeValueModel{D}, covariates::DataFrame, θ::NamedTuple) where {D} = D.(evaluateDistributionParameters(model, covariates, θ))
 
 function loglikelihoodDerivative(model::RegressionExtremeValueModel, θ::NamedTuple)
     param_names = getModelParameters(model)

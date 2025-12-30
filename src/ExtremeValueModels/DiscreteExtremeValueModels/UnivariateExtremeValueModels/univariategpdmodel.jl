@@ -3,7 +3,9 @@ struct UnivariateGPDModel <: UnivariateExtremeValueModel{GeneralizedPareto}
     threshold::Float64
 end
 
-getModelParameters(model::UnivariateGPDModel) = (:σ,:ξ)
+_getModelParameters(model::UnivariateGPDModel) = (:σ,:ξ)
+
+_getModelData(model::UnivariateGPDModel) = model.data
 
 evaluateScaleParameter(model::UnivariateGPDModel, σ::Float64) = exp(σ)
 

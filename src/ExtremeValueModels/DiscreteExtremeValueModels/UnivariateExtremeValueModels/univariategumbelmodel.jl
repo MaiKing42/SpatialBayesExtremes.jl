@@ -2,7 +2,9 @@ struct UnivariateGumbelModel <: UnivariateExtremeValueModel{Gumbel}
     data::Vector{<:Real}
 end
 
-getModelParameters(model::UnivariateGumbelModel) = (:μ,:σ)
+_getModelParameters(model::UnivariateGumbelModel) = (:μ,:σ)
+
+_getModelData(model::UnivariateGumbelModel) = model.data
 
 evaluateLocationParameter(model::UnivariateGumbelModel, μ::Float64) = μ
 

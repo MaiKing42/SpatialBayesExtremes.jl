@@ -9,21 +9,23 @@ Any ExtremeValueModel implements the following functions:
 """
 abstract type ExtremeValueModel end
 
-function getModelParameters(model::ExtremeValueModel) end
+getModelParameters(model::ExtremeValueModel) = _getModelParameters(model)
+
+getModelData(model::ExtremeValueModel) = _getModelData(model)
 
 """
     getDistribution(model::ExtremeValueModel,θ::NamedTuple)
 
 Get the probability distribution associated with the extreme value model given the parameters θ.
 """
-function getDistribution(model::ExtremeValueModel,θ::NamedTuple) end
+getDistribution(model::ExtremeValueModel,θ::NamedTuple) =_getDistribution(model,θ)
 
 """
     loglikelihood(model::ExtremeValueModel,θ::NamedTuple)
 
 Compute the loglikelihood of the data linked to an extreme value model given the parameters θ.
 """
-loglikelihood(model::ExtremeValueModel,θ::NamedTuple) = sum(logpdf(getDistribution(model,θ), model.data))
+loglikelihood(model::ExtremeValueModel,θ::NamedTuple) = sum(logpdf(getDistribution(model,θ), getModelData(model)))
 
 """
     likelihood(model::ExtremeValueModel,θ::NamedTuple)

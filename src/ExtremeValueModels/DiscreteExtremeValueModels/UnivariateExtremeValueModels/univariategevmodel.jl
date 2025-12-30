@@ -2,7 +2,9 @@ struct UnivariateGEVModel <: UnivariateExtremeValueModel{GeneralizedExtremeValue
     data::Vector{<:Real}
 end
 
-getModelParameters(model::UnivariateGEVModel) = (:μ,:σ,:ξ)
+_getModelParameters(model::UnivariateGEVModel) = (:μ,:σ,:ξ)
+
+_getModelData(model::UnivariateGEVModel) = model.data
 
 evaluateLocationParameter(model::UnivariateGEVModel, μ::Float64) = μ
 
