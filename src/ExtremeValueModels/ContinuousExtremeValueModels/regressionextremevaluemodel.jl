@@ -1,8 +1,3 @@
-"""
-    RegressionExtremeValueModel
-
-Abstract type for regression extreme value models.
-"""
 abstract type RegressionExtremeValueModel{D<:UnivariateDistribution} <: ContinuousExtremeValueModel end
 
 function evaluateDistributionParameters(model::RegressionExtremeValueModel, θ::NamedTuple) end
