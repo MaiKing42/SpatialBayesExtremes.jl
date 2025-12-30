@@ -1,7 +1,7 @@
 name = "SpatialBayesExtremes"
 uuid = "23dce541-07d2-483c-a77f-fe2bf38e6d72"
-authors = ["Marcel Kipping <kipping.marcel@web.de> and contributors"]
 version = "1.0.0-DEV"
+authors = ["Marcel Kipping <kipping.marcel@web.de> and contributors"]
 
 [deps]
 AbstractMCMC = "80f14c24-f653-4e6a-9b94-39d6b0f70001"
@@ -27,7 +27,7 @@ Optim = "1.10.0"
 ProgressMeter = "1.11.0"
 SpecialFunctions = "2.4.0"
 StatsModels = "0.7"
-Turing = "0.36.3"
+Turing = "0.36.3, 0.42"
 julia = "1.8.5"
 
 [extras]
