@@ -1,12 +1,13 @@
 abstract type RegressionExtremeValueModel{D<:UnivariateDistribution} <: ContinuousExtremeValueModel end
 
-function evaluateDistributionParameters(model::RegressionExtremeValueModel, θ::NamedTuple) end
+# Evaluate distribution parameters given model and parameter values
+evaluateDistributionParameters(model::RegressionExtremeValueModel, θ::NamedTuple) = _evaluateDistributionParameters(model, model.data.covariates; θ...)
 
-function evaluateDistributionParameters(model::RegressionExtremeValueModel, covariates::DataFrame, θ::NamedTuple) end
+evaluateDistributionParameters(model::RegressionExtremeValueModel, covariates::DataFrame, θ::NamedTuple) = _evaluateDistributionParameters(model, covariates; θ...)
 
-function evaluateJacobianDistributionParameters(model::RegressionExtremeValueModel, θ::NamedTuple) end
+evaluateJacobianDistributionParameters(model::RegressionExtremeValueModel, θ::NamedTuple) = _evaluateJacobianDistributionParameters(model; θ...)
 
-function evaluateJacobianDistributionParameters(model::RegressionExtremeValueModel, covariates::DataFrame, θ::NamedTuple) end
+evaluateJacobianDistributionParameters(model::RegressionExtremeValueModel, covariates::DataFrame, θ::NamedTuple) = _evaluateJacobianDistributionParameters(model, covariates; θ...)
 
 _getDistribution(model::RegressionExtremeValueModel{D}, θ::NamedTuple) where {D} = D.(evaluateDistributionParameters(model, θ))
 

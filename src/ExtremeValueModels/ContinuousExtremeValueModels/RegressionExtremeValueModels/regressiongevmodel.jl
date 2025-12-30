@@ -83,12 +83,6 @@ evaluateDistributionParameters(model::RegressionGEVModel, θ::NamedTuple) = _eva
 
 _evaluateDistributionParameters(model::RegressionGEVModel, covariates::DataFrame; μ, σ, ξ) = (μ = evaluateLocationParameter(model, covariates, μ),σ =  evaluateScaleParameter(model, covariates, σ),ξ = evaluateShapeParameter(model, covariates, ξ))
 
-evaluateDistributionParameters(model::RegressionGEVModel, covariates::DataFrame, θ::NamedTuple) = _evaluateDistributionParameters(model, covariates;θ...)
-
 _evaluateJacobianDistributionParameters(model::RegressionGEVModel; μ, σ, ξ) = (μ = evaluateJacobianLocationParamater(model, μ),σ = evaluateJacobianScaleParameter(model, σ), ξ = evaluateJacobianShapeParameter(model, ξ))
 
-evaluateJacobianDistributionParameters(model::RegressionGEVModel, θ::NamedTuple) = _evaluateJacobianDistributionParameters(model; θ...)
-
 _evaluateJacobianDistributionParameters(model::RegressionGEVModel, covariates::DataFrame; μ, σ, ξ) = (μ = evaluateJacobianLocationParameter(model, covariates, μ), σ =  evaluateJacobianScaleParameter(model, covariates, σ), ξ = evaluateJacobianShapeParameter(model, covariates, ξ))
-
-evaluateJacobianDistributionParameters(model::RegressionGEVModel, covariates::DataFrame, θ::NamedTuple) = _evaluateJacobianDistributionParameters(model, covariates; θ...)

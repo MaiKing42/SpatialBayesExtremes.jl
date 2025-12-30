@@ -58,16 +58,8 @@ end
 
 _evaluateDistributionParameters(model::RegressionGPDModel; σ, ξ) = (μ = threshold*ones(length(data)), σ = evaluateScaleParameter(model, σ), ξ = evaluateShapeParameter(model, ξ))
 
-evaluateDistributionParameters(model::RegressionGPDModel, θ::NamedTuple) = _evaluateDistributionParameters(model; θ...)
-
 _evaluateDistributionParameters(model::RegressionGPDModel, covariates::DataFrame; σ, ξ) = (μ = threshold*ones(length(data)), σ = evaluateScaleParameter(model, covariates, σ), ξ = evaluateShapeParameter(model, covariates, ξ))
-
-evaluateDistributionParameters(model::RegressionGPDModel, covariates::DataFrame, θ::NamedTuple) = _evaluateDistributionParameters(model, covariates; θ...)
 
 _evaluateJacobianDistributionParameters(model::RegressionGPDModel; σ, ξ) = (μ = zeros(length(data)), σ = evaluateJacobianScaleParameter(model, σ), ξ = evaluateJacobianShapeModel(model, ξ))
 
-evaluateJacobianDistributionParameters(model::RegressionGPDModel, θ::NamedTuple) = _evaluateJacobianDistributionParameters(model; θ...)
-
 _evaluateJacobianDistributionParameters(model::RegressionGPDModel, covariates::DataFrame; σ, ξ) = (μ = zeros(length(data)), σ = evaluateJacobianScaleModel(model, covariates, σ), ξ = evaluateJacobianShapeModel(model, covariates, ξ))
-
-evaluateJacobianDistributionParameters(model::RegressionGPDModel, covariates::DataFrame, θ::NamedTuple) = _evaluateJacobianDistributionParameters(model, covariates; θ...)
