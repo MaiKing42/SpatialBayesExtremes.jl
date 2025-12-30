@@ -10,7 +10,7 @@ An extreme value model provides all the information and metadata necessary to ap
 
 The abstract type `ExtremeValueModel` subsumes any types of objects which specify a parametric family meant for estimation of extremes and all necessary sample information.
 
-```@doc
+```@docs
 SpatialBayesExtremes.ExtremeValueModel
 SpatialBayesExtremes.getdistribution
 SpatialBayesExtremes.likelihood
