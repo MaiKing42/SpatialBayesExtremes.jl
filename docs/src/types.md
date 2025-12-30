@@ -12,8 +12,14 @@ The abstract type `ExtremeValueModel` subsumes any types of objects which specif
 
 ```@docs
 SpatialBayesExtremes.ExtremeValueModel
-SpatialBayesExtremes.getdistribution
+SpatialBayesExtremes.getDistribution
 SpatialBayesExtremes.likelihood
 SpatialBayesExtremes.loglikelihood
 ```
 
+Currently, we distinguish between two subtypes of `ExtremeValueModel`, depending on whether the model includes covariates and allows for exrapolation beyond the sample covariates ([continuous](@ref continuous)) or not ([discrete](@ref discrete)).
+
+```julia
+abstract type DiscreteExtremeValueModel <: ExtremeValueModel end
+abstract type ContinuousExtremeValueModel <: ExtremeValueModel end
+```
