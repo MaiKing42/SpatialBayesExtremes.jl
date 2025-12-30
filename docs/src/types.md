@@ -12,5 +12,8 @@ The abstract type `ExtremeValueModel` subsumes any types of objects which specif
 
 ```@doc
 SpatialBayesExtremes.ExtremeValueModel
+SpatialBayesExtremes.getdistribution
+SpatialBayesExtremes.likelihood
+SpatialBayesExtremes.loglikelihood
 ```
 

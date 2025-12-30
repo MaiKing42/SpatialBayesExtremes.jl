@@ -1,16 +1,35 @@
 """
     ExtremeValueModel
 
-Abstract type for extreme value models.
+`ExtremeValueModel` is any type of statistical model used to represent and analyze extreme values in a dataset.
+Any ExtremeValueModel implements the following functions:
+* `getDistribution`
+* `likelihood`
+* `loglikelihood`
 """
 abstract type ExtremeValueModel end
 
 function getModelParameters(model::ExtremeValueModel) end
 
+"""
+    getDistribution(model::ExtremeValueModel,θ::NamedTuple)
+
+Get the probability distribution associated with the extreme value model given the parameters θ.
+"""
 function getDistribution(model::ExtremeValueModel,θ::NamedTuple) end
 
+"""
+    loglikelihood(model::ExtremeValueModel,θ::NamedTuple)
+
+Compute the loglikelihood of the data linked to an extreme value model given the parameters θ.
+"""
 loglikelihood(model::ExtremeValueModel,θ::NamedTuple) = sum(logpdf(getDistribution(model,θ), model.data))
 
+"""
+    likelihood(model::ExtremeValueModel,θ::NamedTuple)
+
+Compute the likelihood of the data linked to an extreme value model given the parameters θ.
+"""
 likelihood(model::ExtremeValueModel,θ::NamedTuple) = exp(loglikelihood(model,θ))
 
 function loglikelihoodDerivative(model::ExtremeValueModel,θ::NamedTuple)
