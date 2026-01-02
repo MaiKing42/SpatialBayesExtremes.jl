@@ -14,6 +14,7 @@ makedocs(;
         canonical="https://MaiKing42.github.io/SpatialBayesExtremes.jl",
         edit_link="master",
         assets=String[],
+        mathengine = Documenter.MathJax()
     ),
     pages=[
         "index.md",
