@@ -40,5 +40,7 @@ It has one parameter that specifies the statistical model it is the parameter es
 
 ```@docs
 SpatialBayesExtremes.FittedEstimator
+SpatialBayesExtremes.getParameterEstimate
+SpatialBayesExtremes.getDistributionEstimate
 ```
 
