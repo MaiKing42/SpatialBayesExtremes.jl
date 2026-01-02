@@ -44,3 +44,8 @@ SpatialBayesExtremes.getParameterEstimate
 SpatialBayesExtremes.getDistributionEstimate
 ```
 
+Each concrete type corresponds to one estimation method provided by this package. Currently, the following estimation methods exist:
+
+* Probability-weighted moment estimation for Gumbel distribution, genralized extreme value distribution and generalized Pareto distribution
+* Mean excess based Hill estimation and mean excess estimator for generalized Pareto distribution
+* Maximum likelihood estimation
