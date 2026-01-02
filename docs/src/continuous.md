@@ -18,17 +18,15 @@ As in the univariate case, we assume that the response variable can be modeled u
 Conditional on the covariates, each observation is assumed to follow an extreme value distribution (e.g. GEV, GPD). All observations are assumed to be independent, irrespective of the covariates.
 
 In contrast to stationary models with constant parameters, we allow each model parameter to depend on covariates. For a generic parameter $θ$, we assume
-$$
-\theta = f(x)
-$$
+$$\theta = f(x)$$
 where $x$ denotes a covariate vector (e.g. the covariates associated with some observation), and $f$ belongs to a user-specified function class as follows:
 Although th dependence on the covariates may be nonlinear, the model is linear in its unknown parameters. More precisely, each parameter function can is represented as
 $$
     \theta = \sum_{i = 1}^{m} \beta_{j} \, \phi_{j}(x)
 $$
 where:
-* $\beta = (\beta_{1}, \dots, \beta_{m})$ are regression coefficients
-* $\phi_{j}$ are functions of the covariates
+- $\beta = (\beta_{1}, \dots, \beta_{m})$ are regression coefficients
+- $\phi_{j}$ are functions of the covariates
 
 The basis functions $\phi_{j}(\cdot)$ may include:
 * raw covariates
@@ -46,9 +44,7 @@ In Julia, observations and covariates are stored in one `DataFrame`. The functio
 ```
 
 corresponds to a parameter function of the form
-$$
-\mu = \beta_{0} + \beta_{1}x + \beta_{2}\log(z).
-$$
+$$\mu = \beta_{0} + \beta_{1}x + \beta_{2}\log(z).$$
 
 ```@docs
 SpatialBayesExtremes.RegressionExtremeValueModel
