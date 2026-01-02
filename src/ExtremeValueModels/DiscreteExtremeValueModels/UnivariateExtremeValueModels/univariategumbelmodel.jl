@@ -1,3 +1,14 @@
+"""
+    UnivariateGumbelModel
+
+A univariate extreme value model for the Gumbel distribution suitable for modeling maxima of datasets.
+The Gumbel distribution is characterized by its location parameter `μ` and scale parameter `σ`. We reparametrize the scale parameter using its logarithm to ensure positivity during estimation.
+
+```julia
+fitgumbelPWM(data::Vector{<:Real})                  #fit the univariate Gumbel model using PWM estimation
+fitgumbelPWM(data::DataFrame, column::Symbol)       #fit the univariate Gumbel model using PWM estimation on a DataFrame column
+```
+"""
 struct UnivariateGumbelModel <: UnivariateExtremeValueModel{Gumbel}
     data::Vector{<:Real}
 end

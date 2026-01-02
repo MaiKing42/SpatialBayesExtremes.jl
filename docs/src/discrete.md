@@ -10,3 +10,13 @@ Currently, the only available class of discrete extreme value models are univari
 
 ## Univariate Extreme Value Models
 
+The abstract type `UnivariateExtremeValueModel` subsumes different parametric families of univariate distributions suitable to model univariate extremes.
+
+```@docs
+SpatialBayesExtremes.UnivariateExtremeValueModel
+```
+We consider the following classes of distributions:
+
+```@docs
+UnivariateGumbelModel
+```
