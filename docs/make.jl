@@ -1,4 +1,5 @@
 using SpatialBayesExtremes
+using DataFrames
 using Documenter
 
 DocMeta.setdocmeta!(SpatialBayesExtremes, :DocTestSetup, :(using SpatialBayesExtremes); recursive=true)
