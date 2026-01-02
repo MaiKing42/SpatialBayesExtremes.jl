@@ -4,10 +4,10 @@ struct MaximumLikelihoodEstimator{M<:ExtremeValueModel} <: FittedEstimator{M}
     converged :: Bool
 end
 
-function _getParameters(mle::MaximumLikelihoodEstimator)
+function _getParameterEstimate(mle::MaximumLikelihoodEstimator)
     return mle.θ̂
 end
 
-function _getDistribution(mle::MaximumLikelihoodEstimator)
+function _getDistributionEstimate(mle::MaximumLikelihoodEstimator)
     return getDistribution(mle.model, mle.θ̂)
 end

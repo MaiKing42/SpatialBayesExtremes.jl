@@ -6,18 +6,18 @@ An abstract type for fitted estimators of extreme value models.
 abstract type FittedEstimator{M<:ExtremeValueModel} end
 
 """
-    getParameters(fe::FittedEstimator)
+    getParameterEstimate(fe::FittedEstimator)
 
 Returns the parameter estimates.
 """
-getParameters(fe::FittedEstimator) = _getParameters(fe)
+getParameterEstimate(fe::FittedEstimator) = _getParameterEstimate(fe)
 
 """
-    getDistribution(fe::FittedEstimator)
+    getDistributionEstimate(fe::FittedEstimator)
 
 Returns the probability distribution associated with the fitted estimator.
 """
-getDistribution(fe::FittedEstimator) = _getDistribution(fe)
+getDistributionEstimate(fe::FittedEstimator) = _getDistributionEstimate(fe)
 
 include(joinpath("FittedEstimators","pwmestimator.jl"))
 include(joinpath("FittedEstimators","meanexcessestimator.jl"))

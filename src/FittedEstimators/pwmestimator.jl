@@ -3,10 +3,10 @@ struct PWMEstimator{M<:UnivariateExtremeValueModel} <: FittedEstimator{M}
     θ̂::NamedTuple
 end
 
-function _getParameters(pwme::PWMEstimator)
+function _getParameterEstimate(pwme::PWMEstimator)
     return pwme.θ̂
 end
 
-function _getDistribution(pwme::PWMEstimator)
+function _getDistributionEstimate(pwme::PWMEstimator)
     return getDistribution(pwme.model, pwme.θ̂)
 end

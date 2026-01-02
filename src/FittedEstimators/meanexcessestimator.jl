@@ -3,10 +3,10 @@ struct MeanExcessEstimator <: FittedEstimator{UnivariateGPDModel}
     θ̂::NamedTuple
 end
 
-function _getParameters(mee::MeanExcessEstimator)
+function _getParameterEstimate(mee::MeanExcessEstimator)
     return mee.θ̂
 end
 
-function _getDistribution(mee::MeanExcessEstimator)
+function _getDistributionEstimate(mee::MeanExcessEstimator)
     return getDistribution(mee.model, getParameters(mee))
 end
