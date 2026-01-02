@@ -8,6 +8,10 @@ The Gumbel distribution is characterized by its location parameter `μ` and scal
 fitgumbelPWM(data::Vector{<:Real})                  #fit the univariate Gumbel model using PWM estimation
 fitgumbelPWM(data::DataFrame, column::Symbol)       #fit the univariate Gumbel model using PWM estimation on a DataFrame column
 ```
+
+External links
+
+* [Gumbel distribution on Wikipedia](http://en.wikipedia.org/wiki/Gumbel_distribution)
 """
 struct UnivariateGumbelModel <: UnivariateExtremeValueModel{Gumbel}
     data::Vector{<:Real}

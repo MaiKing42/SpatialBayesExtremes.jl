@@ -12,6 +12,9 @@ fitgevML(data::DataFrame, column::Symbol)                                  #fit 
 fitgevML(data::Vector{<:Real}, initialvalue::NamedTuple)                   #fit the univariate GEV model using Maximum Likelihood estimation with initial values (μ=μ0, σ=log(σ0), ξ=ξ0)
 fitgevML(data::DataFrame, column::Symbol, initialvalue::NamedTuple)        #fit the univariate GEV model using Maximum Likelihood estimation on a DataFrame column with initial values (μ=μ0, σ=log(σ0), ξ=ξ0)
 ```
+External links
+
+* [Generalized extreme value distribution on Wikipedia](https://en.wikipedia.org/wiki/Generalized_extreme_value_distribution)
 """
 struct UnivariateGEVModel <: UnivariateExtremeValueModel{GeneralizedExtremeValue}
     data::Vector{<:Real}

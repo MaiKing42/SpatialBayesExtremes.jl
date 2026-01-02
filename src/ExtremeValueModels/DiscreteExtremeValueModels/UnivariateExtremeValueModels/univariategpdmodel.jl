@@ -16,6 +16,10 @@ fitgpdML(data::DataFrame, column::Symbol)                                   #fit
 fitgpdML(data::Vector{<:Real}, initialvalue::NamedTuple)                    #fit the univariate GPD model using Maximum Likelihood estimation with initial values (σ=log(σ0), ξ=ξ0)
 fitgpdML(data::DataFrame, column::Symbol, initialvalue::NamedTuple)         #fit the univariate GPD model using Maximum Likelihood estimation on a DataFrame column with initial values (σ=log(σ0), ξ=ξ0)
 ```
+
+External links
+
+* [Generalized Pareto distribution on Wikipedia](https://en.wikipedia.org/wiki/Generalized_Pareto_distribution)
 """
 struct UnivariateGPDModel <: UnivariateExtremeValueModel{GeneralizedPareto}
     data::Vector{<:Real}
