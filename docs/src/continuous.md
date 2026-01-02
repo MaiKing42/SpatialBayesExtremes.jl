@@ -50,3 +50,16 @@ $$
 \mu = \beta_{0} + \beta_{1}x + \beta_{2}\log(z).
 $$
 
+```@docs
+SpatialBayesExtremes.RegressionExtremeValueModel
+```
+
+We consider the following regression models:
+
+```@docs
+RegressionGEVModel
+```
+
+```@docs
+RegressionGPDModel
+```
