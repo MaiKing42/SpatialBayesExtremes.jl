@@ -1,3 +1,8 @@
+"""
+    abstract type RegressionExtremeValueModel{D<:UnivariateDistribution} <: ContinuousExtremeValueModel end
+
+An abstract type for regression extreme value models.
+"""
 abstract type RegressionExtremeValueModel{D<:UnivariateDistribution} <: ContinuousExtremeValueModel end
 
 # Evaluate distribution parameters given model and parameter values
