@@ -20,3 +20,8 @@ We consider the following classes of distributions:
 ```@docs
 UnivariateGumbelModel
 ```
+
+```@docs
+UnivariateGEVModel
+```
+

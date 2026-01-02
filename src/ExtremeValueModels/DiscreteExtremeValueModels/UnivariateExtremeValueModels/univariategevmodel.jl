@@ -1,3 +1,18 @@
+""""
+    UnivariateGEVModel
+
+A univariate extreme value model for the Generalized Extreme Value (GEV) distribution suitable for modeling maxima of a dataset.
+The GEV distribution is characterized by its location parameter `μ`, scale parameter `σ`, and shape parameter `ξ`. We reparametrize the scale parameter using its logarithm to ensure positivity during estimation.
+
+```julia
+fitgevPWM(data::Vector{<:Real})                                            #fit the univariate GEV model using PWM estimation
+fitgevPWM(data::DataFrame, column::Symbol)                                 #fit the univariate GEV model using PWM estimation on a DataFrame column
+fitgevML(data::Vector{<:Real})                                             #fit the univariate GEV model using Maximum Likelihood estimation
+fitgevML(data::DataFrame, column::Symbol)                                  #fit the univariate GEV model using Maximum Likelihood estimation on a DataFrame column
+fitgevML(data::Vector{<:Real}, initialvalue::NamedTuple)                   #fit the univariate GEV model using Maximum Likelihood estimation with initial values (μ=μ0, σ=log(σ0), ξ=ξ0)
+fitgevML(data::DataFrame, column::Symbol, initialvalue::NamedTuple)        #fit the univariate GEV model using Maximum Likelihood estimation on a DataFrame column with initial values (μ=μ0, σ=log(σ0), ξ=ξ0)
+```
+"""
 struct UnivariateGEVModel <: UnivariateExtremeValueModel{GeneralizedExtremeValue}
     data::Vector{<:Real}
 end
