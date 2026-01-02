@@ -1,3 +1,8 @@
+"""
+    UnivariateExtremeValueModel{D<:UnivariateDistribution} <: DiscreteExtremeValueModel end
+
+A `UnivariateExtremeValueModel` is any type of discrete extreme value model used to represent and analyze univariate extreme values in a dataset.
+"""
 abstract type UnivariateExtremeValueModel{D<:UnivariateDistribution} <: DiscreteExtremeValueModel end
 
 #get from model parameters to distribution parameters

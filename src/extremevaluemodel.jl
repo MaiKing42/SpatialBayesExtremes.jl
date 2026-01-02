@@ -1,5 +1,5 @@
 """
-    ExtremeValueModel
+    abstract type ExtremeValueModel end
 
 `ExtremeValueModel` is any type of statistical model used to represent and analyze extreme values in a dataset.
 Any ExtremeValueModel implements the following functions:
