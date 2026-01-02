@@ -25,3 +25,6 @@ UnivariateGumbelModel
 UnivariateGEVModel
 ```
 
+```@docs
+UnivariateGPDModel
+```
