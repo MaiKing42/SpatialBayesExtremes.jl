@@ -4,7 +4,7 @@ Contrary to the discrete extreme value models, continuous extreme value models r
 
 ```@docs
 SpatialBayesExtremes.ContinuousExtremeValueModel
-SpatialBayesExtremes.getDistribution(model::ContinuousExtremeValueModel, covariates::DataFrame, θ::NamedTuple)
+SpatialBayesExtremes.getDistribution(model::ContinuousExtremeValueModel, covariates::DataFrames.DataFrame, θ::NamedTuple)
 ```
 
 Currently, the only available class of continuous extreme value models are regression extreme value models.
