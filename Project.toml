@@ -1,6 +1,6 @@
 name = "SpatialBayesExtremes"
 uuid = "23dce541-07d2-483c-a77f-fe2bf38e6d72"
-version = "1.0.0-DEV"
+version = "0.1.0"
 authors = ["Marcel Kipping <kipping.marcel@web.de> and contributors"]
 
 [deps]
