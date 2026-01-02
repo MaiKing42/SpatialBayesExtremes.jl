@@ -1,3 +1,15 @@
+"""
+    RegressionGPDModel
+
+A regression generalized Pareto distribution (GPD) model for threshold exceedances with covariate-dependent scale and shape parameters. The model is designed to model the tail behavior of data exceeding a specified threshold while accounting for non-stationary characteristics through covariates.
+
+```julia
+fitSpatialgpdML(data::Vector{<:Real}, covariates::DataFrame, scaleFormula::FormulaTerm, shapeFormula::FormulaTerm)                                        #maximum likelihood estimation
+fitSpatialgpdML(data::Vector{<:Real}, column::Symbol, scaleFormula::FormulaTerm, shapeFormula::FormulaTerm)                                               #maximum likelihood estimation from joint DataFrame for data and covariates, specifying column for data
+fitSpatialgpdML(data::Vector{<:Real}, covariates::DataFrame, scaleFormula::FormulaTerm, shapeFormula::FormulaTerm, initialvalue::NamedTuple)              #maximum likelihood estimation with initial values
+fitSpatialgpdML(data::Vector{<:Real}, column::Symbol, scaleFormula::FormulaTerm, shapeFormula::FormulaTerm, initialvalue::NamedTuple)                     #maximum likelihood estimation from joint DataFrame for data and covariates, specifying column for data, with initial values
+```
+"""
 struct RegressionGPDModel<:RegressionExtremeValueModel{GeneralizedPareto}
     data::Vector{Float64}
     threshold::Float64

@@ -1,3 +1,15 @@
+"""
+    RegressionGEVModel
+
+A regression model for generalized extreme value distributed data where the location, scale, and shape parameters are modeled as functions of covariates. The model is suited for modeling the marginal behavior of block maxima with non-stationary characteristics.
+
+```julia
+fitSpatialgevML(data::Vector{<:Real}, covariates::DataFrame, locationFormula::FormulaTerm, scaleFormula::FormulaTerm, shapeFormula::FormulaTerm)                                        #maximum likelihood estimation
+fitSpatialgevML(data::Vector{<:Real}, column::Symbol, locationFormula::FormulaTerm, scaleFormula::FormulaTerm, shapeFormula::FormulaTerm)                                               #maximum likelihood estimation from joint DataFrame for data and covariates, specifying column for data
+fitSpatialgevML(data::Vector{<:Real}, covariates::DataFrame, locationFormula::FormulaTerm, scaleFormula::FormulaTerm, shapeFormula::FormulaTerm, initialvalue::NamedTuple)              #maximum likelihood estimation with initial values
+fitSpatialgevML(data::Vector{<:Real}, column::Symbol, locationFormula::FormulaTerm, scaleFormula::FormulaTerm, shapeFormula::FormulaTerm, initialvalue::NamedTuple)                     #maximum likelihood estimation from joint DataFrame for data and covariates, specifying column for data, with initial values
+```
+"""
 struct RegressionGEVModel<:RegressionExtremeValueModel{GeneralizedExtremeValue}
     data::Vector{Float64}
     locationTerm::FormulaTerm
